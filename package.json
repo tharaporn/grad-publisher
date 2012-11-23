@@ -1,0 +1,13 @@
+{
+  "name" : "grad-publisher",
+  "user" : "tharapornt",
+  "version" : "0.0.1",
+  "dependencies" : {
+    "express" : "*",        
+    "hbs" : "*"    
+  },
+  "scripts" :{
+    "start" : "server.js"
+  }
+}
+

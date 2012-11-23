@@ -1,0 +1,293 @@
+<h3>การขอจัดทำรูปเล่มและซีดี  วิทยานิพนธ์/การค้นคว้าอิสระ</h3>
+ 
+<div class="row-fluid">
+  <div class="span12">                                
+    <div class="row-fluid">
+      <div class="span9">      
+        <ul class="nav nav-tabs">
+          <li><a href="#section1" data-toggle="tab">ข้อมูลนิสิต</a></li>
+          <li><a href="#section2" data-toggle="tab">จัดทำเล่ม</a></li>
+          <li><a href="#section3" data-toggle="tab">สำเนาเอกสาร</a></li>
+          <li><a href="#section4" data-toggle="tab">จัดทำซีดี</a></li>
+          <li><a href="#section5" data-toggle="tab">จัดรูปแบบ</a></li>
+          <li><a href="#section6" data-toggle="tab">เอกสารนำส่ง</a></li>
+          <li><a href="#section7" data-toggle="tab">การรับงานคืน</a></li>
+        </ul>
+        
+        <div class="tab-content">
+          <div class="tab-pane active" id="section1">       
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label"> ป้อนข้อมูล </label>
+                <div class="controls">
+                  <input type="text" class="input-small" placeholder="รหัสนิสิต" ng-model="student_id">                             
+                    <button ng-click="get_student()" class="btn btn-inverse" type="submit"> <i class="icon-search icon-white"></i> Search</button>                            
+                </div>
+              </div>
+            </form>           
+            {{student.id}}
+            {{student.first_name}}
+            {{student.last_name}}
+         </div>
+             
+          <div class="tab-pane" id="section2"> 
+            <form class="form-horizontal">          
+              <div class="control-group">
+                <label class="control-label">รูปแบบสารนิพนธ์</label>   
+                <div class="controls">       
+                  <label class="radio">
+                    <input type="radio" ng-model="schema.type" value="วิทยานิพนธ์"> วิทยานิพนธ์
+                  </label>          
+                  <label class="radio">
+                    <input type="radio" ng-model="schema.type" value="การศึกษาอิสระ"> การศึกษาอิสระ
+                  </label>                              
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">ปกแข็ง</label>          
+                <div class="controls">
+                  <input type="text" class="input-mini" ng-model="schema.hardcopy.item" placeholder="เล่ม">
+                  <span class="help-inline">เล่มละ 200 บาท</span>                                
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">ปกอ่อน</label>
+                <div class="controls">
+                  <input type="text" class="input-mini" ng-model="schema.softcopy.item" placeholder="เล่ม">                             
+                  <span class="help-inline">เล่มละ 50 บาท</span>                                
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">จำนวนหน้า</label>
+                <div class="controls">
+                  <input type="text" class="input-mini" ng-model="schema.more.item" placeholder="หน้า">                             
+                  <span class="help-block">ส่วนที่เกิน 200 หน้า คิดเพิ่มทุก 50 หน้า เล่มละ 10 บาท</span>                                
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <div class="tab-pane" id="section3">
+            <ul>
+              <li>ส่วนแรก
+                <form class="form-horizontal">
+                  <div class="control-group">
+                    <label class="control-label">คำนำ สารบัญ ฯลฯ </label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" ng-model="schema.preface.item" placeholder="หน้า">                             
+                      <span class="help-inline">หน้าละ 0.50 บาท</span>                                
+                    </div>
+                  </div>
+                </form>
+              </li>
+              
+              <li>ส่วนเนื้อหา
+                <form class="form-horizontal">
+                  <div class="control-group">
+                    <label class="control-label">ขนาด A4</label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" ng-model="schema.wd_A4.item" placeholder="ขาวดำ">                             
+                      <input type="text" class="input-mini" ng-model="schema.color_A4.item" placeholder="สี">                             
+                      <span class="help-block">ขาวดำ หน้าละ 0.50 บาท / สี หน้าละ 20 บาท</span>                                
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">ขนาด F4</label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" ng-model="schema.wd_F4.item" placeholder="ขาวดำ">                             
+                      <input type="text" class="input-mini" ng-model="schema.color_F4.item" placeholder="สี">                             
+                      <span class="help-block">ขาวดำ หน้าละ 1 บาท / สี หน้าละ 25 บาท</span>                                
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">ขนาด B4</label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" ng-model="schema.wd_B4.item" placeholder="ขาวดำ">                             
+                      <input type="text" class="input-mini" ng-model="schema.color_B4.item" placeholder="สี">                             
+                      <span class="help-block">ขาวดำ หน้าละ 2 บาท / สี หน้าละ 30 บาท</span>                                
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">ขนาด A3</label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" ng-model="schema.wd_A3.item" placeholder="ขาวดำ">                             
+                      <input type="text" class="input-mini" ng-model="schema.color_A3.item" placeholder="สี">                             
+                      <span class="help-block">ขาวดำ หน้าละ 3 บาท / สี หน้าละ 40 บาท</span>                                
+                    </div>
+                  </div>
+                </form>
+              </li>                           
+            </ul>
+         </div>    
+          
+          <div class="tab-pane" id="section4">            
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label"> จัดทำซีดีพร้อมสกรีนแผ่น </label>
+                <div class="controls">
+                  <input type="text" class="input-mini" ng-model="schema.cdcopy.item" placeholder="แผ่น">                             
+                  <span class="help-inline">แผ่นละ 100 บาท</span>                                
+                </div>
+              </div>
+            </form>              
+          </div>
+          
+          <div class="tab-pane" id="section5">            
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">ความประสงค์จัดทำรูปแบบ</label>   
+                <div class="controls">       
+                  <label class="radio">
+                    <input type="radio" ng-model="schema.type" value="thesis"> มีความประสงค์ดำเนินการตรวจสอบความถูกต้อง เรียบร้อย
+                  </label>          
+                  <label class="radio">
+                    <input type="radio" ng-model="schema.type" value="indenpendent_study"> ไม่ประสงค์ตรวจสอบ มอบสำนักพิมพ์ฯ ดำเนินการจัดทำเล่มต่อไป
+                  </label>                              
+                </div>                  
+                
+                <label class="control-label"> จัดทำรูปแบบ </label>
+                <div class="controls">
+                  <input type="text" class="input-mini" ng-model="schema.format.item" placeholder="หน้า">                             
+                  <span class="help-inline">หน้าละ 12 บาท</span>                                
+                </div>
+              </div>
+            </form>            
+          </div>
+          
+          <div class="tab-pane" id="section6">     
+             <ul>
+                <li>วิทยานิพนธ์       
+                  <form class="form-horizontal">          
+                    <div class="control-group">
+                        <label class="checkbox" ng-init="schema.attach = {}">
+                          <input type="checkbox" ng-model="schema.attach.scriptthesis" value="scriptthesis"> ต้นฉบับวิทยานิพนธ์ฉบับสมบูรณ์ จำนวน 1 เล่ม
+                        </label>          
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.cdscriptthesis" value="cdscriptthesis"> ซีดีข้อมูลวิทยานิพนธ์ฉบับสมบูรณ์ จำนวน 1 แผ่น
+                        </label>
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.form24" value="form24"> บว.24-1 แบบขออนุมัติสำเร็จการศึกษา (ป.โท)
+                        </label>    
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.form25" value="form25"> บว.25 แบบรายงานผลการตรวจรูปแบบวิทยานิพนธ์ (ป.โท/ป.เอก)
+                        </label>  
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.form26" value="form26"> บว.26 แบบนำส่งวิทยานิพนธ์ฉบับสมบูรณ์ (ป.โท)
+                        </label>                    
+                         <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.form27" value="form27"> บว.27 แบบนำส่งวิทยานิพนธ์ฉบับสมบูรณ์ (ป.เอก)
+                        </label>                 
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.form28" value="form28"> บว.28 แบบขออนุมัติสำเร็จการศึกษา (ป.เอก)
+                        </label>             
+                     </div>
+                  </form>           
+              </li> 
+              
+                <li>การค้นคว้าอิสระ       
+                  <form class="form-horizontal">          
+                    <div class="control-group">
+                        <label class="checkbox" ng-init="schema.attach = {}">
+                          <input type="checkbox" ng-model="schema.attach.scriptis" value="scriptis"> ต้นฉบับการค้นคว้าอิสระฉบับสมบูรณ์ จำนวน 1 เล่ม
+                        </label>          
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.cdscriptis" value="cdscriptis"> ซีดีข้อมูลการค้นคว้าอิสระฉบับสมบูรณ์ จำนวน 1 แผ่น
+                        </label>
+                        <label class="checkbox">
+                          <input type="checkbox" ng-model="schema.attach.approve" value="approve"> (สนพ.2) แบบรับรองการแก้ไขเล่มการค้นคว้าอิสระ (สำหรับนิสิตระดับปริญญาโท แผน ข)
+                        </label>
+                    </div>
+                  </form>    
+                </li>  
+             </ul> 
+          </div>
+                  
+           <div class="tab-pane" id="section7"> 
+              <form class="form-horizontal">          
+                <div class="control-group">
+                  <label class="control-label">วิทยานิพนธ์</label>   
+                  <div class="controls">       
+                    <label class="radio">
+                      <input type="radio" ng-model="returnthesis" value="returnthesis"> นิสิตรับคืนด้วยตนเอง (ตามกำหนดรับคืน)
+                    </label>          
+                    <label class="radio">
+                      <input type="radio" ng-model="returnthesis" value="returngrad"> มอบสำนักพิมพ์ฯ ดำเนินการส่งให้งานวิชาการ บัณฑิตวิทยาลัยต่อไป
+                    </label>                              
+                  </div>
+                </div>
+              
+                <div class="control-group">
+                  <label class="control-label">การค้นคว้าอิสระ</label>   
+                  <div class="controls">       
+                    <label class="radio">
+                      <input type="radio" ng-model="returnis" value="returnis"> นิสิตรับคืนด้วยตนเอง (ตามกำหนดรับคืน)
+                    </label>          
+                    <label class="radio">
+                      <input type="radio" ng-model="returnis" value="returnfaculty"> มอบสำนักพิมพ์ฯ ดำเนินการส่งให้คณะต้นสังกัดต่อไป
+                    </label>                              
+                 </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+                    
+      <div class="span3">
+        <table class="table table-bordered table-condensed">
+          <caption><strong>รายการ</strong></caption>         
+          <tr>
+            <td>
+              จัดทำเล่ม
+            </td>
+            <td><span ng-bind="total_section_1|number"></span></td>
+          </tr>
+          
+          <tr>
+            <td>
+              สำเนาเอกสาร
+            </td>
+            <td><span ng-bind="schema.total_section_2p + schema.total_section_2wd_A4 + schema.total_section_2wd_F4+ schema.total_section_2wd_B4+ schema.total_section_2wd_A3+ schema.total_section_2color_A4+ schema.total_section_2color_F4+ schema.total_section_2color_B4+ schema.total_section_2color_A3|number"></span></td>
+          </tr>
+          
+          <tr>
+            <td>
+              จัดทำซีดี พร้อมสกรีนแผ่น
+            </td>
+            <td><span ng-bind="schema.cdcopy.item * schema.cdcopy.price|number"></span></td>
+          </tr>
+          
+          <tr>
+            <td>
+              จัดรูปแบบ
+            </td>
+            <td><span ng-bind="schema.format.item * schema.format.price|number"></span></td>
+          </tr>
+          
+          <tr>
+             <td >
+              <strong><span class="pull-right">รวมเป็นเงินทั้งสิ้น</span></strong>
+            </td>
+            <td>
+              <strong>
+              <span ng-bind="schema.total_section_1h + schema.total_section_1s + extra_page(schema.more.item) + schema.total_section_2p + schema.total_section_2wd_A4 + schema.total_section_2wd_F4+ schema.total_section_2wd_B4+ schema.total_section_2wd_A3+ schema.total_section_2color_A4+ schema.total_section_2color_F4+ schema.total_section_2color_B4+ schema.total_section_2color_A3 + schema.total_section_3 + schema.total_section_4|number"></span>
+              </strong>
+            </td>
+          </tr>          
+        </table>   
+      
+        <button ng-click="save()" class="btn btn-primary" ng-disabled="isNotStudent()" type="submit"> <i class="icon-ok icon-white"></i> Save</button>
+      
+      </div>
+    </div>  
+  </div>
+</div>
+   
+  
+ 
+
