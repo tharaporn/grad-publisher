@@ -3,7 +3,7 @@
 <div class="row-fluid">
   <div class="span12">                                
     <div class="row-fluid">
-      <div class="span9">      
+      <div class="span8">      
         <ul class="nav nav-tabs">
           <li><a href="#section1" data-toggle="tab">ข้อมูลนิสิต</a></li>
           <li><a href="#section2" data-toggle="tab">จัดทำเล่ม</a></li>
@@ -13,24 +13,69 @@
           <li><a href="#section6" data-toggle="tab">เอกสารนำส่ง</a></li>
           <li><a href="#section7" data-toggle="tab">การรับงานคืน</a></li>
         </ul>
-        
-        <div class="tab-content">
-          <div class="tab-pane active" id="section1">       
+   
+        <div class="tab-content">  
+          <div class="tab-pane active" id="section1">     
+           
+             <div class="alert alert-error">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>คำเตือน!</strong> กรุณาใส่ข้อมูล รหัสนิสิต และกดปุ่ม Search
+             </div>  
+           
             <form class="form-horizontal">
               <div class="control-group">
-                <label class="control-label"> ป้อนข้อมูล </label>
+                <label class="control-label"> ข้อมูล </label>
                 <div class="controls">
                   <input type="text" class="input-small" placeholder="รหัสนิสิต" ng-model="student_id">                             
-                    <button ng-click="get_student()" class="btn btn-inverse" type="submit"> <i class="icon-search icon-white"></i> Search</button>                            
+                    <button ng-click="get_student()" class="btn btn-inverse" type="submit"> <i class="icon-search icon-white"></i> Search</button>                          
                 </div>
               </div>
             </form>           
-            {{student.id}}
-            {{student.first_name}}
-            {{student.last_name}}
+            {{student.id}}{{student.prefix_name}}{{student.first_name}}   {{student.last_name}}<br>
+            {{student.level.name}}<br>               
+            {{student.faculty.name}}<br>   
+            {{student.program.name}}                          
+       
+  <br>
+   <br>      
+   
+      <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>กรุณากรอกข้อมูลเพิ่มเติม</strong> 
+       </div>   
+  
+  <div class="control-group"> 
+         <div class="controls">     
+            <strong>ที่อยู่ (สามารถติดต่อได้สะดวก) : </strong> <input type="text" class="input-xxlarge" ng-model="schema.address.item" placeholder="เลขที่ ซอย ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์">
          </div>
-             
+         
+         <div class="controls">
+            <strong>หมายเลขโทรศัพท์ : </strong> <input type="text" class="input-medium" ng-model="schema.tel.item" placeholder="000-0000000">
+         </div>
+                     
+         <div class="controls">
+            <strong>E-mail :</strong> <input type="text" class="input-medium" ng-model="schema.email.item" placeholder="email@hotmail.com">
+         </div>
+                     
+         <div class="controls">
+            <strong>ชื่อเรื่อง (ภาษาไทย) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.thai_title.item" placeholder="ภาษาไทย">         
+         </div>
+                              
+         <div class="controls">
+            <strong>ชื่อเรื่อง (ภาษาอังกฤษ) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.eng_title.item" placeholder="ภาษาอังกฤษ">         
+         </div>
+   </div>
+       
+         </div>
+         
+          
           <div class="tab-pane" id="section2"> 
+            
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>คำเตือน!</strong> ถ้าไม่มีข้อมูล กรุณาใส่ 0
+            </div> 
+            
             <form class="form-horizontal">          
               <div class="control-group">
                 <label class="control-label">รูปแบบสารนิพนธ์</label>   
@@ -61,21 +106,27 @@
               </div>
               
               <div class="control-group">
+                <span class="help-block">(ถ้ามี) จำนวนมากกว่า 200 หน้า คิดเพิ่มทุกๆ 50 หน้า เล่มละ 10 บาท (เศษเกินคิดเป็น 50 หน้า)</span> <br>                   
                 <label class="control-label">จำนวนหน้า</label>
-                <div class="controls">
-                  <input type="text" class="input-mini" ng-model="schema.more.item" placeholder="หน้า">                             
-                  <span class="help-block">ส่วนที่เกิน 200 หน้า คิดเพิ่มทุก 50 หน้า เล่มละ 10 บาท</span>                                
+                <div class="controls">                    
+                  <input type="text" class="input-mini" ng-model="schema.more.item" placeholder="หน้า">                                                      
                 </div>
               </div>
             </form>
           </div>
           
           <div class="tab-pane" id="section3">
+            
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>คำเตือน!</strong> ถ้าไม่มีข้อมูล กรุณาใส่ 0
+            </div> 
+            
             <ul>
               <li>ส่วนแรก
                 <form class="form-horizontal">
                   <div class="control-group">
-                    <label class="control-label">คำนำ สารบัญ ฯลฯ </label>
+                    <label class="control-label">ประกาศคุณูปการ สารบัญฯลฯ </label>
                     <div class="controls">
                       <input type="text" class="input-mini" ng-model="schema.preface.item" placeholder="หน้า">                             
                       <span class="help-inline">หน้าละ 0.50 บาท</span>                                
@@ -126,7 +177,13 @@
             </ul>
          </div>    
           
-          <div class="tab-pane" id="section4">            
+          <div class="tab-pane" id="section4">      
+            
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>คำเตือน!</strong> ถ้าไม่มีข้อมูล กรุณาใส่ 0
+            </div> 
+                            
             <form class="form-horizontal">
               <div class="control-group">
                 <label class="control-label"> จัดทำซีดีพร้อมสกรีนแผ่น </label>
@@ -138,16 +195,22 @@
             </form>              
           </div>
           
-          <div class="tab-pane" id="section5">            
+          <div class="tab-pane" id="section5">        
+            
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>คำเตือน!</strong> ถ้าไม่มีข้อมูล กรุณาใส่ 0
+            </div> 
+                          
             <form class="form-horizontal">
               <div class="control-group">
                 <label class="control-label">ความประสงค์จัดทำรูปแบบ</label>   
                 <div class="controls">       
                   <label class="radio">
-                    <input type="radio" ng-model="schema.type" value="thesis"> มีความประสงค์ดำเนินการตรวจสอบความถูกต้อง เรียบร้อย
+                    <input type="radio" ng-model="schema.require" value="require"> มีความประสงค์ดำเนินการตรวจสอบความถูกต้อง เรียบร้อย
                   </label>          
                   <label class="radio">
-                    <input type="radio" ng-model="schema.type" value="indenpendent_study"> ไม่ประสงค์ตรวจสอบ มอบสำนักพิมพ์ฯ ดำเนินการจัดทำเล่มต่อไป
+                    <input type="radio" ng-model="schema.require" value="norequire"> ไม่ประสงค์ตรวจสอบ มอบสำนักพิมพ์ฯ ดำเนินการจัดทำเล่มต่อไป
                   </label>                              
                 </div>                  
                 
@@ -238,7 +301,7 @@
         </div>
       </div>
                     
-      <div class="span3">
+      <div class="span4">
         <table class="table table-bordered table-condensed">
           <caption><strong>รายการ</strong></caption>         
           <tr>
@@ -250,9 +313,9 @@
           
           <tr>
             <td>
-              สำเนาเอกสาร
+              สำเนาเอกสาร จำนวน {{order.book()}} เล่ม
             </td>
-            <td><span ng-bind="schema.total_section_2p + schema.total_section_2wd_A4 + schema.total_section_2wd_F4+ schema.total_section_2wd_B4+ schema.total_section_2wd_A3+ schema.total_section_2color_A4+ schema.total_section_2color_F4+ schema.total_section_2color_B4+ schema.total_section_2color_A3|number"></span></td>
+            <td><span ng-bind="order.total_section2()"></span></td>
           </tr>
           
           <tr>
@@ -275,19 +338,15 @@
             </td>
             <td>
               <strong>
-              <span ng-bind="schema.total_section_1h + schema.total_section_1s + extra_page(schema.more.item) + schema.total_section_2p + schema.total_section_2wd_A4 + schema.total_section_2wd_F4+ schema.total_section_2wd_B4+ schema.total_section_2wd_A3+ schema.total_section_2color_A4+ schema.total_section_2color_F4+ schema.total_section_2color_B4+ schema.total_section_2color_A3 + schema.total_section_3 + schema.total_section_4|number"></span>
+              <span ng-bind="schema.total_section_1h + schema.total_section_1s + extra_page(schema.more.item) + order.total_section2() + schema.total_section_3 + schema.total_section_4|number"></span>
               </strong>
             </td>
           </tr>          
         </table>   
       
-        <button ng-click="save()" class="btn btn-primary" ng-disabled="isNotStudent()" type="submit"> <i class="icon-ok icon-white"></i> Save</button>
-      
+        <a href="#/order"><button ng-click="save()" class="btn btn-primary" ng-disabled="isNotStudent()" type="submit"> <i class="icon-folder-open icon-white"></i> Save</button></a>
+         
       </div>
     </div>  
   </div>
 </div>
-   
-  
- 
-

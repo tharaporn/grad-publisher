@@ -1,9 +1,7 @@
 var express = require("express");
 var handlebars = require("hbs");
-
 var config = require('./config');
-
-
+var mongodb = require('mongodb');
 var app = express();
 
 app.configure(function() {
@@ -15,7 +13,10 @@ app.configure(function() {
   app.use(express.methodOverride());
 });
 
-
+app.get('/currentdate', function(req, res) {
+  var cdate = new Date();  
+  res.json({'year':cdate.getFullYear(), 'month':cdate.getMonth(), 'date':cdate.getDate()});
+});
 
 app.get('/', function(req, res) {
   var ctx = {title : 'Graduate School Publisher System', baseHref:config.site.baseUrl};    
