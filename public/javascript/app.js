@@ -1,4 +1,4 @@
-var app = angular.module('charge', ['mongolab_service']);
+var app = angular.module('charge', ['mongorest_service']);
 
 app.config(function($routeProvider) {
   $routeProvider.when('/', {
@@ -120,7 +120,7 @@ function OrderObject(order) {
 
 function OrderReceiptController($scope, $routeParams, $location, Order, Program, Student) {
   console.log($routeParams.id);
-  Order.get({id:$routeParams.id}, function(response) {
+  Order.get({document:$routeParams.id}, function(response) {
     self.original = response;
     $scope.order = new Order(self.original);
     //console.log(response);    
@@ -163,14 +163,14 @@ function OrderReceiptController($scope, $routeParams, $location, Order, Program,
 
 }
 
-function OrderController($scope, $routeParams, $location, Order, Student, Program, CurrentDate) {
+function OrderController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment) {
   console.log($routeParams.id);
   
   $scope.pay = function() {
-    var id = $routeParams.id;
+    var id = $routeParams.id
   };
   
-  Order.get({id:$routeParams.id}, function(response) {
+  Order.get({document:$routeParams.id}, function(response) {
     self.original = response;
     $scope.order = new Order(self.original);    
     
@@ -239,12 +239,27 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
       order.total_section_3 + order.total_section_4;    
     
   });   
+  
+  $scope.pay = function() {
+    var c_year = $scope.date['year'];
+    // {'year':2555, 'id':1}        
+    Payment.query({"query":'{"payment_id":{"$exists": true}, "payment_id.year":'+c_year+'}'},function(response) {      
+      $scope.order['payment_id'] = {'year':$scope.date['year'], 'id': response.length+1};  
+      var id = $scope.order._id;
+      var order = angular.extend({}, $scope.order, {_id:undefined});        
+      Payment.update({'document':id}, order, function(response) {
+          // message
+      });      
+    });    
+  };
  
    $scope.destroy = function() {
-    self.original.destroy(function(response) {
-      console.log(response);
-      $location.path('/');
-    });
+     if(!$scope.order.payment_id) {
+      Order.remove({'document':$scope.order._id}, function(response) {
+        console.log(response);
+        $location.path('/');
+      });
+    }
   };
 }
 
@@ -290,7 +305,7 @@ function MainController($scope, Student, Schema, Order, Program) {
   };
   
   
-  Schema.get({id:"50937f24e4b010d72c562171"}, function(response) {
+  Schema.get({document:"50cada85331002dc1d000001"}, function(response) {
     $scope.order = new OrderObject(response);
     console.log($scope.order);     
     $scope.schema = $scope.order.order;      

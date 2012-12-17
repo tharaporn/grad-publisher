@@ -1,30 +1,28 @@
 var app = angular.module('mongorest_service', ['ngResource']);
 
 app.factory('Schema', function($resource) {
-  var Project = $resource('http://www.db.grad.nu.ac.th/apps/mongodb/databases/charge/collections/schema/:document', {    
+  var Schema = $resource('/db/schema/:document', {    
     document: '@idocument'
   },
   {update: { method:'PUT' }});
   return Schema;
-});
-
-angular.module('mongo_stats_service', ['ngResource']).
-factory('MongoStats', function($resource) {
-  var MongoStats = $resource('http://www.db.grad.nu.ac.th/apps/mongodb/stats/charge/schema', {
-    collection: '@collection'
-  },
-  {info: { method:'GET' }});
-  return MongoStats;
 });
 
 app.factory('Order', function($resource) {
-  var Project = $resource('http://www.db.grad.nu.ac.th/apps/mongodb/databases/charge/collections/order/:document', {    
-    document: '@idocument'
+  var Order = $resource('/db/order/:document', {    
+    document: '@document'
   },
   {update: { method:'PUT' }});
-  return Schema;
+  return Order;
 });
 
+app.factory('Payment', function($resource) {
+  var Order = $resource('/pay/order/:document', {    
+    document: '@document'
+  },
+  {update: { method:'PUT' }});
+  return Order;
+});
 
 app.factory('Student', function($resource) {
   var Student = $resource(

@@ -5,7 +5,8 @@
   "dependencies" : {
     "express" : "*",        
     "hbs" : "*",
-    "mongodb" : "*"    
+    "mongodb" : "*",
+    "mongo-connect" : "*"
   },
   "scripts" :{
     "start" : "server.js"

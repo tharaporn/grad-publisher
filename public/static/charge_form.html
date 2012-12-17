@@ -148,7 +148,7 @@
     <div class="control-group">
         <div class="controls">
 
-          <button ng-click="destroy()" ng-show="order._id" class="btn btn-success"><i class="icon-trash icon-white"></i> Delete</button>
+          <button ng-click="destroy()" ng-show="order._id" ng-hide="order.payment_id" class="btn btn-success"><i class="icon-trash icon-white"></i> Delete</button>
               <a href="#/" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancel</a> 
          </div>
    </div>
@@ -175,7 +175,7 @@
     
     <div class="row-fluid">
       <div class="span5">
-                <label class="control-label"><small><strong>เลขที่ใบเสร็จ</strong></small>     {{autorun}}/{{order.date.year}}</label> 
+                <label class="control-label"><small><strong>เลขที่ใบเสร็จ</strong></small>     {{order.payment_id.id}}/{{order.payment_id.year}}</label> 
       </div>
 
        <div class="span6">
@@ -280,8 +280,10 @@
           <small><span>หมายเหตุ  ใบเสร็จรับเงินฉบับนี้จะสมบูรณ์เมื่อมีลายเซ็นต์เจ้าหน้าที่ผู้เงินของบัณฑิตวิทยาลัย</span></small><br><br>
         </div>
  
-          <center><button ng-click="save()" class="btn btn-warning" ng-disabled="isNotStudent()" type="submit"> <i class="icon-ok icon-white"></i> จ่ายเงินแล้ว</button>    
-          <button ng-click="save()" class="btn btn-info" ng-disabled="isNotStudent()" type="submit"> <i class="icon-print icon-white"></i> Print</button>           
+          <center>            
+            <button ng-click="pay()" class="btn btn-warning" ng-hide="order.payment_id" type="submit"> <i class="icon-ok icon-white"></i> จ่ายเงินแล้ว</button>    
+            <button ng-click="save()" class="btn btn-info" ng-disabled="isNotStudent()" type="submit"> <i class="icon-print icon-white"></i> พิมพ์ใบเสร็จรับเงิน</button>           
+          </center>
         <div> 
       </div>
      </div>

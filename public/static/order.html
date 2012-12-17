@@ -3,9 +3,9 @@
     <div class="row-fluid">
       <div class="span12">      
         <ul class="nav nav-tabs">
-          <li><a href="#section1" data-toggle="tab">การค้นคว้าอิสระ</a></li>
+          <li><a href="#section1" data-toggle="tab">ข้อมูลทั้งหมด</a></li>
           <li><a href="#section2" data-toggle="tab">วิทยานิพนธ์</a></li>
-          <li><a href="#section3" data-toggle="tab">ข้อมูลทั้งหมด</a></li>
+          <li><a href="#section3" data-toggle="tab">การค้นคว้าอิสระ</a></li>
         </ul>
    
   <div class="tab-content">  
@@ -26,8 +26,8 @@
       </thead>
       
       <tbody>
-        <tr ng-repeat="order in order_list | filter:search" ng-show="order.type=='การศึกษาอิสระ'" >             
-          <td><a href="#/order/{{order._id.$oid}}">{{order.student.id}}</a></td>        
+        <tr ng-repeat="order in order_list | filter:search">           
+          <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
@@ -35,7 +35,7 @@
         </tr>
       </tbody>
     </table>
-  </div>     
+  </div>                
 
       
 <div class="tab-pane" id="section2"> 
@@ -56,7 +56,7 @@
       
       <tbody>
         <tr ng-repeat="order in order_list | filter:search" ng-show="order.type=='วิทยานิพนธ์'" >             
-          <td><a href="#/order/{{order._id.$oid}}">{{order.student.id}}</a></td>        
+          <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
@@ -83,8 +83,8 @@
       </thead>
       
       <tbody>
-        <tr ng-repeat="order in order_list | filter:search">           
-          <td><a href="#/order/{{order._id.$oid}}">{{order.student.id}}</a></td>        
+        <tr ng-repeat="order in order_list | filter:search" ng-show="order.type=='การศึกษาอิสระ'" >             
+          <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
@@ -92,7 +92,7 @@
         </tr>
       </tbody>
     </table>
-  </div>                
+  </div>     
 
      </div>
     </div>
