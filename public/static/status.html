@@ -1,0 +1,72 @@
+
+<div class="row-fluid">
+  <div class="span12">                                
+    <div class="row-fluid">
+      <div class="span12">      
+        <ul class="nav nav-tabs">
+          <li><a href="#section1" data-toggle="tab"> ประสงค์ตรวจรูปแบบ</a></li>
+          <li><a href="#section2" data-toggle="tab"> ไม่ประสงค์ตรวจรูปแบบ</a></li>
+        </ul>
+   
+  <div class="tab-content">  
+    <div class="tab-pane active" id="section1">    
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-search"></i></span>
+        <input type="text" placeholder="Search" ng-model="search">    
+    </div>
+        <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>รหัสนิสิต</th>    
+          <th>ชื่อ-นามสกุล</th>   
+          <th>คณะ</th>   
+          <th>ประเภทรูปแบบ</th> 
+          <th>การชำระเงิน</th>                 
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr ng-repeat="order in order_list | filter:search" ng-show="order.require=='require'" >                     
+          <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
+          <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
+          <td>{{order.student.faculty.name}}</td>          
+          <td>{{order.type}}</td>
+          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>    
+        </tr>
+      </tbody>
+    </table>
+  </div>                
+
+      
+<div class="tab-pane" id="section2"> 
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-search"></i></span>
+        <input type="text" placeholder="Search" ng-model="search">    
+    </div>
+        <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>รหัสนิสิต</th>    
+          <th>ชื่อ-นามสกุล</th>   
+          <th>คณะ</th>    
+          <th>ประเภทรูปแบบ</th> 
+          <th>การชำระเงิน</th>                   
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr ng-repeat="order in order_list | filter:search" ng-show="order.require=='norequire'" >                     
+          <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
+          <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
+          <td>{{order.student.faculty.name}}</td>        
+          <td>{{order.type}}</td>
+          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>                       
+        </tr>
+      </tbody>
+    </table>
+  </div>                
+
+    </div>
+  </div>
+ </div>
+</div>

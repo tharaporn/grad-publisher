@@ -19,9 +19,71 @@ app.config(function($routeProvider) {
   $routeProvider.when('/order/:id', {
     controller:OrderController, 
     templateUrl:'static/charge_form.html'
-  });       
+  });    
+  
+    $routeProvider.when('/status', {
+    controller:OrderStatusController, 
+    templateUrl:'static/status.html'
+  }); 
+  
+  $routeProvider.when('/role', {
+    controller:RoleController, 
+    templateUrl:'static/role_manager.html'
+  });	
+   
 });
 
+function UserCtrl($scope, User, Logout) {
+  $scope.user = User.get(function(res) {
+    console.log(res);
+  });
+  
+  $scope.logout = function() {
+    Logout.get(function(response){
+      if(response.success){
+        $scope.user = null;
+        $scope.$broadcast('logout');
+      }
+    });
+  };
+}
+
+function RoleController($scope, Role, User, Logout, Admin) {   
+  var orig = null;
+  $scope.users = Admin.query();
+  //console.log($scope.users);
+  $scope.get_user = function(id) {
+    Admin.get({'id':id}, function(user) {
+      var ng_role = [];
+      $scope.user = user;//user is object, array
+      orig = user;// ???
+      if(user['role']) { //found
+        angular.forEach(user.role, function(value, idx) {
+          ng_role.push({'name':value});//??
+        });
+      }
+      $scope.user['role'] = ng_role; // not found
+    });
+  };
+
+  $scope.update = function() {
+    var db_role = [];
+    angular.forEach($scope.user.role, function(value, idx) {
+      db_role.push(value.name);
+    });
+    orig['role'] = db_role;// ?? origin -- new user
+    
+    var doc = angular.extend({}, orig, {_id:undefined});
+    //console.log(doc);
+    Admin.update({'id':orig._id}, doc, function(response) { 
+      console.log(response);
+      if(response.success) {
+        $scope.get_user(orig._id);
+      }
+    });
+  };
+  
+}
 
 function OrderObject(order) { 
   var self = this;   
@@ -51,7 +113,7 @@ function OrderObject(order) {
      return self.book() * order.total_section_2p;
   };
   
-  /*
+ /* 
   this.total_section_2wd_A4 = (h_copy+s_copy) * order.total_section_2wd_A4;
   this.total_section_2wd_F4 = (h_copy+s_copy) * order.total_section_2wd_F4;
   this.total_section_2wd_B4 = (h_copy+s_copy) * order.total_section_2wd_B4;
@@ -60,7 +122,7 @@ function OrderObject(order) {
   this.total_section_2color_F4 = (h_copy+s_copy) * order.total_section_2color_F4;
   this.total_section_2color_B4 = (h_copy+s_copy) * order.total_section_2color_B4;
   this.total_section_2color_A3 = (h_copy+s_copy) * order.total_section_2color_A3;
-  */
+ */ 
   
   this.total_section2 = function() {    
     var preface_item = 0;
@@ -94,8 +156,9 @@ function OrderObject(order) {
       (color_A3_item * order.color_A3.price);      ;
       
     return copy_price * self.book();
-    
-    /*
+};  
+  
+ /*   
     return (h_copy+s_copy) * (order.total_section_2p + 
       order.total_section_2wd_A4 + 
       order.total_section_2wd_F4+ 
@@ -105,8 +168,7 @@ function OrderObject(order) {
       order.total_section_2color_F4+ 
       order.total_section_2color_B4+ 
       order.total_section_2color_A3);  
-      */
-  };
+ */     
       
   var num_page = parseInt(order.more.item);        
   this.extra_page = 0;
@@ -118,7 +180,25 @@ function OrderObject(order) {
     
 }
 
-function OrderReceiptController($scope, $routeParams, $location, Order, Program, Student) {
+function OrderStatusController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment, User, Logout) {
+$scope.user = User.get(function(response) {
+      //console.log(response);
+      if (response.user) {
+   $scope.order_list = Order.query(function(response) {
+    console.log(response);
+  }); 
+  
+  var self = this;
+  //console.log($routeParams.id);
+  
+  //$scope.pay = function() {
+    //var id = $routeParams.id 
+  }
+ });
+  };
+
+
+function OrderReceiptController($scope, $routeParams, $location, Order, Program, Student, User, Logout) {
   console.log($routeParams.id);
   Order.get({document:$routeParams.id}, function(response) {
     self.original = response;
@@ -163,7 +243,8 @@ function OrderReceiptController($scope, $routeParams, $location, Order, Program,
 
 }
 
-function OrderController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment) {
+function OrderController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment, User, Logout) {
+  var self = this;
   console.log($routeParams.id);
   
   $scope.pay = function() {
@@ -172,10 +253,10 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
   
   Order.get({document:$routeParams.id}, function(response) {
     self.original = response;
-    $scope.order = new Order(self.original);    
+    $scope.order = new Order(self.original);  
     
     $scope.order_obj = new OrderObject(response);
-    
+   // console.log("-->"+$scope.order_obj.book());  
     console.log(response);
     
     CurrentDate.get(function(response) {      
@@ -187,8 +268,6 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
       $scope.date['month'] = month_array[response.month];
       $scope.order.date = $scope.date;
     });
-    
-    
     
     Student.get({
       id:response.student.id, 
@@ -224,6 +303,7 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
       $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
     }
     
+   /* 
     order = response;
     
     $scope.total = order.total_section_1h + 
@@ -237,7 +317,7 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
       order.total_section_2color_A4+ order.total_section_2color_F4+ 
       order.total_section_2color_B4+ order.total_section_2color_A3 + 
       order.total_section_3 + order.total_section_4;    
-    
+  */ 
   });   
   
   $scope.pay = function() {
@@ -263,17 +343,20 @@ function OrderController($scope, $routeParams, $location, Order, Student, Progra
   };
 }
 
-
-
-function OrderListController($scope,$routeParams, $location, Order) {
+function OrderListController($scope, $routeParams, $location, Order, User, Logout) {
   //console.log('hello');
-  $scope.order_list = Order.query(function(response) {
-    console.log(response);
-  });   
+    $scope.user = User.get(function(response) {
+      //console.log(response);
+      if (response.user) {
+        $scope.order_list = Order.query(function(response) {
+          console.log(response);
+        }); 
+      }
+    });
 
 }
 
-function MainController($scope, Student, Schema, Order, Program) {
+function MainController($scope, Student, Schema, Order, Program, User, Logout) {
   var self = this;  
   
   $scope.isNotStudent = function() {    
@@ -334,7 +417,6 @@ function MainController($scope, Student, Schema, Order, Program) {
       }        
     });            
   
-  
     $scope.$watch("schema.preface.item", function(n, o) {
       $scope.schema.total_section_2p = n * $scope.schema.preface.price ;
     });
@@ -378,7 +460,7 @@ function MainController($scope, Student, Schema, Order, Program) {
     $scope.$watch("schema.format.item", function(n, o) {
       $scope.schema.total_section_4 = n * $scope.schema.format.price;
     });
-    
+   
   });    
   
   $scope.save = function() {

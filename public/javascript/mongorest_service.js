@@ -16,6 +16,32 @@ app.factory('Order', function($resource) {
   return Order;
 });
 
+app.factory('User', function($resource) {
+    var User  = $resource('user',{}, {});   
+    return User;   
+});
+
+app.factory('Admin', function($resource) {
+  var Admin = $resource('/admin/users/:id', {
+  },
+  {update: { method:'PUT' }});
+  return Admin;
+});
+
+app.factory('Logout', function($resource) {
+    var Logout  = $resource('logout',{}, {});   
+    return Logout ;   
+});
+
+app.factory('Role', function($resource) {
+  var Role = $resource('/db/user/:id', {    
+    id: '@id'
+  },
+  {update: { method:'PUT' }});
+  return Role;
+});
+
+
 app.factory('Payment', function($resource) {
   var Order = $resource('/pay/order/:document', {    
     document: '@document'

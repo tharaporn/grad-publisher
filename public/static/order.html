@@ -1,9 +1,9 @@
-<div class="row-fluid">
+<div class="row-fluid" ng-show="user">
   <div class="span12">                                
     <div class="row-fluid">
       <div class="span12">      
         <ul class="nav nav-tabs">
-          <li><a href="#section1" data-toggle="tab">ข้อมูลทั้งหมด</a></li>
+          <li><a href="#section1" data-toggle="tab">ทั้งหมด</a></li>
           <li><a href="#section2" data-toggle="tab">วิทยานิพนธ์</a></li>
           <li><a href="#section3" data-toggle="tab">การค้นคว้าอิสระ</a></li>
         </ul>
@@ -19,9 +19,9 @@
         <tr>
           <th>รหัสนิสิต</th>    
           <th>ชื่อ-นามสกุล</th>   
-          <th>คณะ</th>
-          <th>ระดับการศึกษา</th>           
+          <th>คณะ</th>       
           <th>ประเภทรูปแบบ</th> 
+          <th>การชำระเงิน</th>                   
         </tr>
       </thead>
       
@@ -29,9 +29,9 @@
         <tr ng-repeat="order in order_list | filter:search">           
           <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
-          <td>{{order.student.faculty.name}}</td>
-          <td>{{order.student.level.name}}</td>             
-          <td>{{order.type}}</td>           
+          <td>{{order.student.faculty.name}}</td>           
+          <td>{{order.type}}</td>
+          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>                       
         </tr>
       </tbody>
     </table>
@@ -51,6 +51,7 @@
           <th>คณะ</th>
           <th>ระดับการศึกษา</th>           
           <th>ประเภทรูปแบบ</th> 
+          <th>การชำระเงิน</th>  
         </tr>
       </thead>
       
@@ -60,7 +61,8 @@
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
-          <td>{{order.type}}</td>           
+          <td>{{order.type}}</td>      
+          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>          
         </tr>
       </tbody>
     </table>
@@ -79,16 +81,18 @@
           <th>คณะ</th>
           <th>ระดับการศึกษา</th>           
           <th>ประเภทรูปแบบ</th> 
+          <th>การชำระเงิน</th>  
         </tr>
       </thead>
       
       <tbody>
-        <tr ng-repeat="order in order_list | filter:search" ng-show="order.type=='การศึกษาอิสระ'" >             
+        <tr ng-repeat="order in order_list | filter:search" ng-show="order.type=='การค้นคว้าอิสระ'" >             
           <td><a href="#/order/{{order._id}}">{{order.student.id}}</a></td>        
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
-          <td>{{order.type}}</td>           
+          <td>{{order.type}}</td>       
+          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>          
         </tr>
       </tbody>
     </table>

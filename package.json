@@ -6,7 +6,10 @@
     "express" : "*",        
     "hbs" : "*",
     "mongodb" : "*",
-    "mongo-connect" : "*"
+    "mongo-connect" : "*",
+    "passport" : "*",
+    "passport-openid" : "*",
+    "generic-pool" : "*"
   },
   "scripts" :{
     "start" : "server.js"

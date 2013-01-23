@@ -4,7 +4,8 @@
       <div class="span9">      
         <ul class="nav nav-tabs">
              <li><a href="#section1" data-toggle="tab">ข้อมูลนิสิต</a></li>
-             <li><a href="#section2" data-toggle="tab">ใบเสร็จรับเงิน</a></li>
+             <li><a href="#section2" data-toggle="tab">เอกสารนำส่ง</a></li>          
+             <li><a href="#section3" data-toggle="tab">ใบเสร็จรับเงิน</a></li>   
         </ul>
    
       <div class="tab-content">  
@@ -77,8 +78,10 @@
            </label>
            
          <label class="control-label " ng-show="order.more.item">
-           จำนวนหน้า   {{order.more.item}} หน้า เป็นเงิน   {{extra_page}}  บาท
-         </label>         
+           จำนวนหน้า   {{order.more.item}} หน้า เป็นเงิน   {{extra_page|number}}  บาท
+         </label>      
+         
+         <label class="control-label"> รวมเป็นเงิน {{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</label>          
     </div> 
  
     <div class="control-group">
@@ -96,33 +99,33 @@
          </label> 
           
           <label class="control-label"> 
-          ขนาด F4 จำนวน   {{order.wd_F4.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2wd_F4|number}} บาท         
+          ขนาด F4 จำนวน   {{order.wd_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_F4 * order_obj.book())|number}} บาท         
           </label>
            
           <label class="control-label"> 
-          ขนาด B4 จำนวน   {{order.wd_B4.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2wd_B4|number}} บาท         
+          ขนาด B4 จำนวน   {{order.wd_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_B4 * order_obj.book())|number}} บาท         
           </label>
                    
           <label class="control-label"> 
-          ขนาด A3 จำนวน   {{order.wd_A3.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2wd_A3|number}} บาท         
+          ขนาด A3 จำนวน   {{order.wd_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_A3  * order_obj.book())|number}} บาท         
           </label>
 
          <label class="control-label"><strong>ส่วนเนื้อหา (สี)</strong></label> 
          
           <label class="control-label"> 
-          ขนาด A4 จำนวน   {{order.color_A4.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2color_A4|number}} บาท
+          ขนาด A4 จำนวน   {{order.color_A4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A4 * order_obj.book())|number}} บาท
          </label> 
           
           <label class="control-label"> 
-          ขนาด F4 จำนวน   {{order.color_F4.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2color_F4|number}} บาท         
+          ขนาด F4 จำนวน   {{order.color_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_F4  * order_obj.book())|number}} บาท         
           </label>
            
           <label class="control-label"> 
-          ขนาด B4 จำนวน   {{order.color_B4.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2color_B4|number}} บาท         
+          ขนาด B4 จำนวน   {{order.color_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_B4  * order_obj.book())|number}} บาท         
           </label>
                    
           <label class="control-label"> 
-          ขนาด A3 จำนวน   {{order.color_A3.item}} หน้า เป็นเงิน {{order_obj.order.total_section_2color_A3|number}} บาท         
+          ขนาด A3 จำนวน   {{order.color_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A3  * order_obj.book())|number}} บาท         
           </label>         
          
          
@@ -155,6 +158,53 @@
           </div>
         
    <div class="tab-pane" id="section2"> 
+     <div class="row-fluid">
+       <div class="span12">
+         สถานะภาพการชำระเงิน<p class="muted"><span ng-show="order.payment_id">  จ่ายเงินแล้ว</span></p>
+     <span>เอกสารที่นำส่งให้สำนักพิมพ์มหาวิทยาลัยนเรศวร มีดังนี้</span>
+     
+     
+     <ol>
+      <li ng-show="order.attach.scriptthesis">
+        <span><p class="muted"> ต้นฉบับวิทยานิพนธ์ฉบับสมบูรณ์ จำนวน 1 เล่ม</p></span>
+      </li>       
+      <li ng-show="order.attach.cdscriptthesis">
+        <span><p class="muted"> ซีดีข้อมูลวิทยานิพนธ์ฉบับสมบูรณ์ จำนวน 1 แผ่น</p></span>
+      </li>        
+      <li ng-show="order.attach.form24">
+        <span><p class="muted"> บว.24-1 แบบขออนุมัติสำเร็จการศึกษา (ป.โท)</p></span>
+      </li>     
+      <li ng-show="order.attach.form25">
+        <span><p class="muted"> บว.25 แบบรายงานผลการตรวจรูปแบบวิทยานิพนธ์ (ป.โท/ป.เอก)</p></span>
+      </li>     
+      <li ng-show="order.attach.form26">
+        <span><p class="muted"> บว.26 แบบนำส่งวิทยานิพนธ์ฉบับสมบูรณ์ (ป.โท)</p></span>
+      </li>     
+      <li ng-show="order.attach.form27">
+        <span><p class="muted"> บว.27 แบบนำส่งวิทยานิพนธ์ฉบับสมบูรณ์ (ป.เอก)</p></span>
+      </li>           
+       <li ng-show="order.attach.form28">
+        <span><p class="muted"> บว.28 แบบขออนุมัติสำเร็จการศึกษา (ป.เอก)</p></span>
+      </li>          
+      <li ng-show="order.attach.scriptis">
+        <span><p class="muted"> ต้นฉบับการค้นคว้าอิสระฉบับสมบูรณ์ จำนวน 1 เล่ม</p></span>
+      </li>     
+      <li ng-show="order.attach.cdscriptis">
+        <span><p class="muted"> ซีดีข้อมูลการค้นคว้าอิสระฉบับสมบูรณ์ จำนวน 1 แผ่น</p></span>
+      </li>                       
+      <li ng-show="order.attach.approve">
+        <span><p class="muted"> (สนพ.2) แบบรับรองการแก้ไขเล่มการค้นคว้าอิสระ (สำหรับนิสิตระดับปริญญาโท แผน ข)</p></span>
+      </li>
+     </ol>
+  
+     
+     การรับงานคืน <p class="muted">{{order.returnthesis}}</p>
+     
+      </div>
+    </div>
+   </div>      
+        
+   <div class="tab-pane" id="section3"> 
       <div class="row-fluid">
         <div class="span12">
             <img src="image/Gradu_logo.jpg">    
@@ -162,8 +212,8 @@
              <div class="span6">
          <address>
            <small><strong>บัณฑิตวิทยาลัย มหาวิทยาลัยนเรศวร</strong><br>
-              9 ต.ท่าโพธิ์ อ.เมือง จ.พืษณุโลก 65000<br>
-              โทรศัพท์ 055 968823-4 โทรสาร 055 968826<br></small>
+              99 หมู่9 ถ.พิษณุโลก-นครสวรรค์ อ.เมือง จ.พิษณุโลก 65000<br>
+              โทรศัพท์ 055 968833-36 โทรสาร 055 968826<br></small>
          </address>
        </div>
     
@@ -219,44 +269,50 @@
              <center><strong> รายการ</strong></center>
             </td>
             <td>
+             <center><strong> จำนวน</strong></center>
+            </td>
+            <td>
               <center><strong> จำนวนเงิน</strong></center>
             </td>
           </tr>
           
           <tr>
             <td>
-              1.  ค่าจัดทำเล่ม
+              1.  ค่าจัดทำเล่ม 
             </td>
-            <td><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page|number}}</span></td>
+            <td><span class="pull-right">{{order_obj.book()}} เล่ม</span></td>
+            <td><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</span></td>
           </tr>
           
           <tr>
             <td>
               2.  ค่าสำเนาเอกสาร 
             </td>
-            <td><span class="pull-right">{{order_obj.total_section2()|number}}</span></td>
+            <td><span class="pull-right">{{order_obj.book()}} เล่ม</span></td>
+            <td><span class="pull-right">{{order_obj.total_section2()|number}} บาท</span></td>
           </tr>
           
           <tr>
             <td>
               3.  ค่าจัดทำซีดี พร้อมสกรีนแผ่น
             </td>
-            <td><span class="pull-right">{{order.total_section_3|number}}</span></td>
+            <td><span class="pull-right">{{order.cdcopy.item}} แผ่น</span></td>
+            <td><span class="pull-right">{{order.total_section_3|number}} บาท</span></td>
           </tr>
           
           <tr>
             <td>
               4.  ค่าจัดรูปแบบ
             </td>
-            <td><span class="pull-right">{{order.total_section_4|number}}</span></td>
+            <td><span class="pull-right">{{order.format.item}} หน้า</span></td>
+            <td><span class="pull-right">{{order.total_section_4|number}} บาท</span></td>
           </tr>
           
           <tr>
-             <td >
-              <center><strong><span>รวมเป็นเงินทั้งสิ้น</span></strong></center>
-            </td>
+             <td><center><strong><span>รวมเป็นเงินทั้งสิ้น</span></strong></center></td>
+             <td></td>
             <td>
-              <strong><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4|number}}</span>
+              <strong><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4|number}} บาท</span>
               </strong>
             </td>
           </tr>          
@@ -268,8 +324,7 @@
          </div>
       <br>
       <div class="span6">
-        <center> <label>.......................................</label></center>  
-        <small><center><label>นางสาวพิมพาภรณ์ เทศสถิตย์</label></center></small>         
+        <center> <label>.......................................</label></center>  <br>
         <center> <label>{{order.date.date}}  {{order.date.month}}  {{order.date.year}}</label></center>      
         <small><center><label>เจ้าหน้าที่ผู้รับเงิน</label></center></small>             
       </div>
@@ -282,12 +337,12 @@
  
           <center>            
             <button ng-click="pay()" class="btn btn-warning" ng-hide="order.payment_id" type="submit"> <i class="icon-ok icon-white"></i> จ่ายเงินแล้ว</button>    
-            <button ng-click="save()" class="btn btn-info" ng-disabled="isNotStudent()" type="submit"> <i class="icon-print icon-white"></i> พิมพ์ใบเสร็จรับเงิน</button>           
+            <button ng-click="save()" class="btn btn-info" ng-disabled="isNotStudent()" type="submit" onclick="window.print();"> <i class="icon-print icon-white"></i> พิมพ์ใบเสร็จรับเงิน</button>   
           </center>
         <div> 
       </div>
      </div>
-          
+                  
         </div>
       </div>
     </div>
