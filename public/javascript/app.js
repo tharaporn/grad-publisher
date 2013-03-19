@@ -1,6 +1,6 @@
 var app = angular.module('charge', ['mongorest_service']);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider) {      
   $routeProvider.when('/', {
     controller:MainController, 
     templateUrl:'static/index.html'
@@ -90,7 +90,14 @@ function OrderObject(order) {
   this.order = order;
     
   var h_copy = 0;
-  var s_copy = 0;    
+  var s_copy = 0;   
+  
+  if(order.hardcopy.item) {
+    h_copy = parseInt(order.hardcopy.item);
+  }
+  if(order.softcopy.item) {
+    s_copy = parseInt(order.softcopy.item);
+  }              
   
   this.book = function() {
     if(order.hardcopy.item) {
@@ -102,16 +109,21 @@ function OrderObject(order) {
     return h_copy + s_copy;
   };
   
-  if(order.hardcopy.item) {
-    h_copy = parseInt(order.hardcopy.item);
-  }
-  if(order.softcopy.item) {
-    s_copy = parseInt(order.softcopy.item);
-  }              
+  
   
   this.total_section_2p = function() {
      return self.book() * order.total_section_2p;
   };
+  
+  
+  this.extra_page = function() {
+    var num_page = parseInt(order.more.item);
+    if(num_page - 200 > 0) {
+      return Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+    }
+    return num_page;
+  };  
+  
   
  /* 
   this.total_section_2wd_A4 = (h_copy+s_copy) * order.total_section_2wd_A4;
@@ -172,7 +184,10 @@ function OrderObject(order) {
       
   var num_page = parseInt(order.more.item);        
   this.extra_page = 0;
+  this.del_page = 0;
+  
   if(num_page - 200 > 0) {  
+    this.del_page = Math.ceil(num_page-200);
     this.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
   }
     
@@ -243,13 +258,114 @@ function OrderReceiptController($scope, $routeParams, $location, Order, Program,
 
 }
 
-function OrderController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment, User, Logout) {
+function OrderController($scope, $routeParams, $location, $filter, Order, Student, Program, Reviewer, CurrentDate, Payment, User, Logout) {
   var self = this;
   console.log($routeParams.id);
+  
+  
+  $scope.save_doc = function() {                    
+    Order.get({document:$routeParams.id}, function(order) {
+      console.log(order);
+      
+      // remove currentdata.get
+      /*
+      CurrentDate.get(function(response) {            
+        order['date'] = {};
+        order.date['date'] = response.date;
+        order.date['year'] = response.year + 543;
+        order.date['month'] = response.month + 1;
+        var month_array = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        order.date['month'] = month_array[response.month];        
+      });
+      */
+      
+      
+      
+      var order_obj = new OrderObject(order);
+      order['book'] = order_obj.book();
+      order['extra_page'] = (order.format.item - 200) * order_obj.book();
+      
+      order['total_1_price'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page);
+      
+      //console.log(order);
+      
+      order['extra_page'] = $filter('number')(order.extra_page);
+      
+      order['extra_price'] = $filter('number')(order_obj.extra_page);      
+      //console.log(order.total_1_price);
+      
+      order['page_21'] = $filter('number')((order_obj.order.preface.item) * order_obj.book());
+      order['page_22'] = $filter('number')((order.wd_A4.item) * order_obj.book());   
+      order['page_23'] = $filter('number')((order.wd_F4.item) * order_obj.book());         
+      order['page_24'] = $filter('number')((order.wd_B4.item) * order_obj.book());   
+      order['page_25'] = $filter('number')((order.wd_A3.item) * order_obj.book());     
+      order['page_26'] = $filter('number')((order.color_A4.item) * order_obj.book());   
+      order['page_27'] = $filter('number')((order.color_F4.item) * order_obj.book());         
+      order['page_28'] = $filter('number')((order.color_B4.item) * order_obj.book());   
+      order['page_29'] = $filter('number')((order.color_A3.item) * order_obj.book());  
+      order['total_2_page'] = $filter('number')(order.more.item * order_obj.book());
+      
+      order['price_21'] = $filter('number')(order_obj.total_section_2p());
+      order['price_22'] = $filter('number')(order_obj.order.total_section_2wd_A4 * order_obj.book());   
+      order['price_23'] = $filter('number')(order_obj.order.total_section_2wd_F4 * order_obj.book());          
+      order['price_24'] = $filter('number')(order_obj.order.total_section_2wd_B4 * order_obj.book());  
+      order['price_25'] = $filter('number')(order_obj.order.total_section_2wd_A3 * order_obj.book());           
+      order['price_26'] = $filter('number')(order_obj.order.total_section_2color_A4 * order_obj.book());   
+      order['price_27'] = $filter('number')(order_obj.order.total_section_2color_F4 * order_obj.book());          
+      order['price_28'] = $filter('number')(order_obj.order.total_section_2color_B4 * order_obj.book());  
+      order['price_29'] = $filter('number')(order_obj.order.total_section_2color_A3 * order_obj.book());     
+      order['total_2_price']= $filter('number')(order_obj.total_section2());
+      
+      order['total_3_price'] = $filter('number')(order.total_section_3);
+      order['total_4_price'] = $filter('number')(order.total_section_4);    
+      
+      order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4);
+      
+      order['total_section_1h'] = $filter('number')(order.total_section_1h);
+      
+    
+      var dataUrl = '/bill/form?order=' + JSON.stringify(order);      
+      var link = document.createElement('a');
+      angular.element(link)
+        .attr('href', dataUrl)
+        .attr('download', 'test.xml') // Pretty much only works in chrome
+      link.click();                      
+    });
+    
+    //$http.get('/bill/form').success(function(res) {            
+    //  console.log(res);
+      
+      
+  };
+  
+  
   
   $scope.pay = function() {
     var id = $routeParams.id
   };
+  
+  $scope.reviewer_list = Reviewer.query();
+  $scope.select_reviewer = function(reviewer) {
+    $scope.selected_reviewer = reviewer;
+  }
+  
+  $scope.save_reviewer = function() {
+    if($scope.selected_reviewer._id) {
+      Reviewer.update({id:$scope.selected_reviewer._id},
+        angular.extend({}, $scope.selected_reviewer, {_id:undefined}),
+        function(res) {
+          console.log(res);
+      });
+        
+    } else {
+      Reviewer.save({},
+        angular.extend({}, $scope.selected_reviewer),
+        function(res) {
+          console.log(res);
+      });
+       
+    }
+  }
   
   Order.get({document:$routeParams.id}, function(response) {
     self.original = response;
@@ -356,8 +472,11 @@ function OrderListController($scope, $routeParams, $location, Order, User, Logou
 
 }
 
-function MainController($scope, Student, Schema, Order, Program, User, Logout) {
-  var self = this;  
+function MainController($scope, Student, Schema, Order, Program, User, Logout,$http) {
+  var self = this;      
+  
+  
+  
   
   $scope.isNotStudent = function() {    
     if($scope.student) return false;

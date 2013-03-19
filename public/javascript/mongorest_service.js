@@ -8,6 +8,16 @@ app.factory('Schema', function($resource) {
   return Schema;
 });
 
+
+app.factory('Reviewer', function($resource) {
+  var Reviewer = $resource('/db/reviewer/:id', {    
+    id: '@idocument'
+  },
+  {update: { method:'PUT' }});
+  return Reviewer;
+});
+
+
 app.factory('Order', function($resource) {
   var Order = $resource('/db/order/:document', {    
     document: '@document'

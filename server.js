@@ -2,6 +2,7 @@ var express = require("express");
 var handlebars = require("hbs");
 var mongo_con = require("mongo-connect");
 var passport = require('passport');
+var fs = require("fs");
 
 var userdb = require('./user_db');
 //var routes = require('./routes');
@@ -95,7 +96,7 @@ app.get('/user', function(req, res) {
 
 app.get('/logout', function(req, res){
   req.logOut();
-  res.json({"success":true});
+  res.json({"success":true});var Handlebars
 });
 
 app.get('/currentdate', function(req, res) {
@@ -106,6 +107,12 @@ app.get('/currentdate', function(req, res) {
 app.get('/', function(req, res) {
   var ctx = {title : 'Graduate School Publisher System', baseHref:config.site.baseUrl};    
   res.render('index', ctx);
+});
+
+app.get('/bill/form', function(req,res) {  
+  //console.log('Bill');  
+  res.set( "Content-Disposition", "attachment; filename=\"bill.xml\"" );  
+  res.render('bill', {'order':JSON.parse(req.query.order),layout:false});    
 });
 
 app.get('/admin/users', admin_role, userprofile.list_user);
