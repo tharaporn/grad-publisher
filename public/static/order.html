@@ -1,4 +1,4 @@
-<div class="row-fluid" ng-show="user">
+<div class="row-fluid">
   <div class="span12">                                
     <div class="row-fluid">
       <div class="span12">      
@@ -31,7 +31,7 @@
           <td>{{order.student.prefix_name}}{{order.student.first_name}} {{order.student.last_name}}</td>  
           <td>{{order.student.faculty.name}}</td>           
           <td>{{order.type}}</td>
-          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>                       
+          <td><span ng-show="order.payment_id">ชำระเงินแล้ว</span></td>                       
         </tr>
       </tbody>
     </table>
@@ -92,7 +92,7 @@
           <td>{{order.student.faculty.name}}</td>
           <td>{{order.student.level.name}}</td>             
           <td>{{order.type}}</td>       
-          <td><span ng-show="order.payment_id">จ่ายเงินแล้ว</span></td>          
+          <td><span ng-show="order.payment_id">ชำระเงินแล้ว</span></td>          
         </tr>
       </tbody>
     </table>

@@ -19,7 +19,7 @@
            
              <div class="alert alert-error">
                <button type="button" class="close" data-dismiss="alert">×</button>
-               <strong>คำเตือน!</strong> กรุณาใส่ข้อมูล รหัสนิสิต และกดปุ่ม Search
+               <strong>คำเตือน!</strong> กรุณาใส่ข้อมูล รหัสนิสิต และกดปุ่ม ค้นหา
              </div>  
            
             <form class="form-horizontal">
@@ -42,7 +42,7 @@
    
        <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong>กรุณากรอกข้อมูลนิสิตเพิ่มเติม</strong> 
+          <strong>กรุณากรอกข้อมูลนิสิต (เพิ่มเติม)</strong> 
        </div>   
   
   <div class="control-group"> 
@@ -59,11 +59,11 @@
          </div>
                      
          <div class="controls">
-            <strong>ชื่อเรื่อง (ภาษาไทย) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.thai_title.item" placeholder="ภาษาไทย">*       
+            <strong>ชื่อเรื่องวิทยานิพนธ์/การค้นคว้าอิสระ (ภาษาไทย) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.thai_title.item" placeholder="ภาษาไทย">*       
          </div>
                               
          <div class="controls">
-            <strong>ชื่อเรื่อง (ภาษาอังกฤษ) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.eng_title.item" placeholder="ภาษาอังกฤษ">*     
+            <strong>ชื่อเรื่องวิทยานิพนธ์/การค้นคว้าอิสระ (ภาษาอังกฤษ) :</strong> <input type="text" class="input-xxlarge" ng-model="schema.eng_title.item" placeholder="ภาษาอังกฤษ">*     
          </div>
    </div>
        
@@ -293,7 +293,8 @@
                     <label class="radio">
                       <input type="radio" ng-model="schema.returnthesis" value="มอบสำนักพิมพ์ฯ ดำเนินการส่งให้คณะต้นสังกัดต่อไป"> มอบสำนักพิมพ์ฯ ดำเนินการส่งให้คณะต้นสังกัดต่อไป
                     </label>  
-                </li>                              
+                </li>    
+                                                         
                 </div>
            </div>
       </div>
@@ -310,7 +311,7 @@
           
           <tr>
             <td>
-              สำเนาเอกสาร จำนวน {{order.book()}} เล่ม
+              ถ่ายเอกสาร จำนวน {{order.book()}} เล่ม
             </td>
             <td><span ng-bind="order.total_section2()|number"></span></td>
           </tr>
@@ -341,7 +342,7 @@
           </tr>          
         </table>   
       
-        <a href="#/order"><button ng-click="save()" class="btn btn-primary" ng-disabled="isNotStudent()" type="submit"> <i class="icon-folder-open icon-white"></i> Save</button></a>
+        <a href="#/order"><button ng-click="save()" class="btn btn-primary" ng-disabled="isNotStudent()" type="submit"> <i class="icon-folder-open icon-white"></i> บันทึก</button></a>
          
       </div>
     </div>  

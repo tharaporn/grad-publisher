@@ -26,11 +26,16 @@ app.config(function($routeProvider) {
     templateUrl:'static/status.html'
   }); 
   
-  $routeProvider.when('/role', {
+    $routeProvider.when('/role', {
     controller:RoleController, 
     templateUrl:'static/role_manager.html'
   });	
    
+    $routeProvider.when('/commit', {
+    controller:CommitteeController, 
+    templateUrl:'static/commit.html'
+  });    
+  
 });
 
 function UserCtrl($scope, User, Logout) {
@@ -196,21 +201,10 @@ function OrderObject(order) {
 }
 
 function OrderStatusController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment, User, Logout) {
-$scope.user = User.get(function(response) {
-      //console.log(response);
-      if (response.user) {
-   $scope.order_list = Order.query(function(response) {
+  $scope.order_list = Order.query(function(response) {
     console.log(response);
-  }); 
-  
-  var self = this;
-  //console.log($routeParams.id);
-  
-  //$scope.pay = function() {
-    //var id = $routeParams.id 
-  }
- });
-  };
+  });     
+};
 
 
 function OrderReceiptController($scope, $routeParams, $location, Order, Program, Student, User, Logout) {
@@ -261,6 +255,26 @@ function OrderReceiptController($scope, $routeParams, $location, Order, Program,
 function OrderController($scope, $routeParams, $location, $filter, Order, Student, Program, Reviewer, CurrentDate, Payment, User, Logout) {
   var self = this;
   console.log($routeParams.id);
+  
+  self.message = function(message) {
+    $scope.error_message  = true;
+    $scope.message  = message;
+    setTimeout(function(){ $scope.$apply(function() { $scope.error_message  = false; }); },4000);
+  }
+  
+  $scope.update_order = function() {
+    var c_order = angular.extend({}, $scope.order, {_id:undefined});    
+    Order.update({document:$routeParams.id}, c_order, function(response) {
+      if(response.error == 401) {
+        self.message("คุณยังไม่ได้รับอนุมัติในการดำเนินการ");        
+      } else {
+        self.message("บันทึกข้อมูลเรียบร้อยแล้ว");        
+      }
+      console.log(response);    
+    });
+  }
+  
+  $scope.reviewer_list = Reviewer.query();
   
   
   $scope.save_doc = function() {                    
@@ -344,30 +358,10 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
     var id = $routeParams.id
   };
   
-  $scope.reviewer_list = Reviewer.query();
-  $scope.select_reviewer = function(reviewer) {
-    $scope.selected_reviewer = reviewer;
-  }
-  
-  $scope.save_reviewer = function() {
-    if($scope.selected_reviewer._id) {
-      Reviewer.update({id:$scope.selected_reviewer._id},
-        angular.extend({}, $scope.selected_reviewer, {_id:undefined}),
-        function(res) {
-          console.log(res);
-      });
-        
-    } else {
-      Reviewer.save({},
-        angular.extend({}, $scope.selected_reviewer),
-        function(res) {
-          console.log(res);
-      });
-       
-    }
-  }
-  
+ 
+  console.log('get order by id');
   Order.get({document:$routeParams.id}, function(response) {
+    console.log(response);    
     self.original = response;
     $scope.order = new Order(self.original);  
     
@@ -460,24 +454,45 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
 }
 
 function OrderListController($scope, $routeParams, $location, Order, User, Logout) {
-  //console.log('hello');
-    $scope.user = User.get(function(response) {
-      //console.log(response);
-      if (response.user) {
-        $scope.order_list = Order.query(function(response) {
-          console.log(response);
-        }); 
-      }
-    });
+  $scope.order_list = Order.query(function(response) {
+      console.log(response);
+    }); 
 
+}
+
+function CommitteeController($scope, Reviewer) {  
+  //self.message("บันทึกข้อมุลเรียบร้อยแล้ว");  
+  $scope.reviewer_list = Reviewer.query();
+  
+  $scope.select_reviewer = function(reviewer) {
+    $scope.selected_reviewer = reviewer;
+  }
+  
+  $scope.save_reviewer = function() {
+    if($scope.selected_reviewer._id) {
+      Reviewer.update({id:$scope.selected_reviewer._id},
+        angular.extend({}, $scope.selected_reviewer, {_id:undefined}),
+        function(res) {
+          console.log(res);
+          $scope.reviewer_list = Reviewer.query();
+      });
+        
+    } else {
+      Reviewer.save({},
+        angular.extend({}, $scope.selected_reviewer),
+        function(res) {
+          console.log(res);
+          $scope.reviewer_list = Reviewer.query();
+      });
+       
+    }
+  }
 }
 
 function MainController($scope, Student, Schema, Order, Program, User, Logout,$http) {
   var self = this;      
   
-  
-  
-  
+      
   $scope.isNotStudent = function() {    
     if($scope.student) return false;
     return true;

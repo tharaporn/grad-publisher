@@ -121,8 +121,8 @@ app.put('/admin/users/:id', admin_role ,userprofile.update_user);
 
 app.get('/db/:collection/:id?', mongo.query);
 app.post('/db/:collection', mongo.insert);
-app.put('/db/:collection/:id', mongo.update);
-app.del('/db/:collection/:id', mongo.delete);
+app.put('/db/:collection/:id', admin_role, mongo.update);
+app.del('/db/:collection/:id', admin_role, mongo.delete);
 
 app.get('/pay/:collection/:id?', mongo_limit.query);
 app.put('/pay/:collection/:id', mongo_limit.update);
@@ -130,8 +130,10 @@ app.put('/pay/:collection/:id', mongo_limit.update);
 function admin_role(req,res,next) {
   console.log('admin_role');
   if(req.user) {
+    console.log(req.user);
     userprofile.check_role(req.user.identifier, ["admin"], function(allow) {
-      if(allow) {
+      console.log(allow);
+      if(allow) {          
           next();
       } else {
           next(new Error("401"));

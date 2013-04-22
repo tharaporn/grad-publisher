@@ -1,0 +1,42 @@
+         <div class="span12">
+          <div class="row-fluid">
+            <div class="span5">           
+              <form>
+                <label><strong>กรอกข้อมูลคณะกรรมการจัดรูปแบบ/ตรวจรูปแบบ</strong></label>
+                
+                <select ng-model="selected_reviewer" ng-options="r.name for r in reviewer_list"></select>  
+                <br>
+                  <input ng-model="selected_reviewer.name" placeholder="ชื่อ-สกุล">
+                  <input ng-model="selected_reviewer.position" placeholder="ตำแหน่ง">
+                  <input ng-model="selected_reviewer.email" placeholder="Email">
+                  <input ng-model="selected_reviewer.tel" placeholder="เบอร์โทรศัพท์">
+                
+                <br><br>
+                <label class="checkbox">
+                  <input type="checkbox" ng-model="selected_reviewer.set"> จัดรูปแบบ                  
+                </label>  
+                
+                <label class="checkbox">
+                  <input type="checkbox" ng-model="selected_reviewer.check"> ตรวจรูปแบบ                  
+                </label>  
+                    
+                    <br>
+                    [<a href ng-click="selected_reviewer=null">เพิ่มข้อมูล</a>]             
+                <button class="btn btn-primary" ng-click="save_reviewer()">บันทึก</button>
+              </form>
+            </div>
+      
+            <div class="span6">
+              <strong>แสดงข้อมูลคณะกรรมการทั้งหมด</strong>
+            
+            <ul>
+             
+              <li ng-repeat="reviewer in reviewer_list">
+                {{reviewer.name}} <a href="" ng-click="select_reviewer(reviewer)"><i class="icon-pencil"></i></a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+
