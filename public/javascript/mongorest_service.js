@@ -1,6 +1,6 @@
 var app = angular.module('mongorest_service', ['ngResource']);
-var prefix = 'apps/grad-publisher';
-//var prefix = '';
+//var prefix = 'apps/grad-publisher';
+var prefix = '';
 
 app.factory('Schema', function($resource) {
   var Schema = $resource(prefix+'/db/schema/:document', {    
@@ -29,7 +29,7 @@ app.factory('Order', function($resource) {
 });
 
 app.factory('User', function($resource) {
-    var User  = $resource('user',{}, {});   
+    var User  = $resource(prefix+'/user',{}, {});   
     return User;   
 });
 
@@ -41,7 +41,7 @@ app.factory('Admin', function($resource) {
 });
 
 app.factory('Logout', function($resource) {
-    var Logout  = $resource('logout',{}, {});   
+    var Logout  = $resource(prefix+'/logout',{}, {});   
     return Logout ;   
 });
 
@@ -89,7 +89,7 @@ app.factory('Program', function($resource) {
 
 app.factory('CurrentDate', function($resource) {
   var CDate = $resource(
-    '/currentdate',     
+    prefix+'/currentdate',     
     {         
     });                         
   return CDate;    
