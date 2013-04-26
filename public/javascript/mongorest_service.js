@@ -1,7 +1,9 @@
 var app = angular.module('mongorest_service', ['ngResource']);
+var prefix = 'apps/grad-publisher';
+//var prefix = '';
 
 app.factory('Schema', function($resource) {
-  var Schema = $resource('/db/schema/:document', {    
+  var Schema = $resource(prefix+'/db/schema/:document', {    
     document: '@idocument'
   },
   {update: { method:'PUT' }});
@@ -10,7 +12,7 @@ app.factory('Schema', function($resource) {
 
 
 app.factory('Reviewer', function($resource) {
-  var Reviewer = $resource('/db/reviewer/:id', {    
+  var Reviewer = $resource(prefix+'/db/reviewer/:id', {    
     id: '@idocument'
   },
   {update: { method:'PUT' }});
@@ -19,7 +21,7 @@ app.factory('Reviewer', function($resource) {
 
 
 app.factory('Order', function($resource) {
-  var Order = $resource('/db/order/:document', {    
+  var Order = $resource(prefix+'/db/order/:document', {    
     document: '@document'
   },
   {update: { method:'PUT' }});
@@ -32,7 +34,7 @@ app.factory('User', function($resource) {
 });
 
 app.factory('Admin', function($resource) {
-  var Admin = $resource('/admin/users/:id', {
+  var Admin = $resource(prefix+'/admin/users/:id', {
   },
   {update: { method:'PUT' }});
   return Admin;
@@ -44,7 +46,7 @@ app.factory('Logout', function($resource) {
 });
 
 app.factory('Role', function($resource) {
-  var Role = $resource('/db/user/:id', {    
+  var Role = $resource(prefix+'/db/user/:id', {    
     id: '@id'
   },
   {update: { method:'PUT' }});
@@ -53,7 +55,7 @@ app.factory('Role', function($resource) {
 
 
 app.factory('Payment', function($resource) {
-  var Order = $resource('/pay/order/:document', {    
+  var Order = $resource(prefix+'/pay/order/:document', {    
     document: '@document'
   },
   {update: { method:'PUT' }});
