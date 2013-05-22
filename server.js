@@ -96,7 +96,7 @@ app.get('/user', function(req, res) {
 
 app.get('/logout', function(req, res){
   req.logOut();
-  res.json({"success":true});var Handlebars
+  res.json({"success":true});  
 });
 
 app.get('/currentdate', function(req, res) {
@@ -109,10 +109,12 @@ app.get('/', function(req, res) {
   res.render('index', ctx);
 });
 
-app.get('/bill/form', function(req,res) {  
-  //console.log('Bill');  
-  res.set( "Content-Disposition", "attachment; filename=\"bill.xml\"" );  
-  res.render('bill', {'order':JSON.parse(req.query.order),layout:false});    
+app.post('/bill/form', function(req,res) {  
+  console.log('Bill');  
+  var order = JSON.parse(req.body.order);  
+  res.set('Content-disposition', 'attachment; filename=bill.xml');  
+  res.set('Content-Type', 'text/plain');
+  res.render('bill', {'order':order, layout:false});    
 });
 
 app.get('/admin/users', admin_role, userprofile.list_user);

@@ -338,7 +338,7 @@
            <tr>
             <td><center><strong>  รวมจัดทำเล่ม </strong></center>
             </td>
-            <td><span class="pull-right"><strong> {{order_obj.book()}} เล่ม </strong></td>
+            <td><span class="pull-right"><strong>{{order_obj.num_book()|number}} เล่ม </strong></td>
             <td><span class="pull-right"></span></td>            
           </tr>  
  
@@ -356,7 +356,7 @@
           </tr>  
             
           <tr>
-            <td>2. ค่าถ่ายเอกสาร จำนวน {{order_obj.book()|number}} เล่ม </td>
+            <td>2. ค่าถ่ายเอกสาร จำนวน {{order.numcopy.item}} เล่ม </td>
             <td><span class="pull-right"></span></td>
             <td><span class="pull-right"></span></td>
           </tr>

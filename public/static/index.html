@@ -128,10 +128,18 @@
               <li>ส่วนแรก (ตั้งแต่ ปกใน ประกาศคุณูปการ บทคัดย่อไทย-อังกฤษ สารบัญ อักษรย่อ) <br> <br>
                 <form class="form-horizontal">
                   <div class="control-group">
+                      
+                      <label class="control-label"> จำนวนเล่ม ที่ต้องการถ่ายฯ </label>
+                        <div class="controls">
+                           <input type="text" class="input-mini" ng-model="schema.numcopy.item" placeholder="เล่ม">    (กรณีที่ถ่ายเอกสารน้อยกว่าจัดทำเล่ม)       
+                        </div>  
+                    
+                    <br>
+                    
                     <label class="control-label"> จำนวน </label>
                     <div class="controls">
                       <input type="text" class="input-mini" ng-model="schema.preface.item" placeholder="หน้า">                             
-                      <span class="help-inline">หน้าละ 0.50 บาท</span>                                
+                      <span class="help-inline">หน้าละ 0.50 บาท</span>   
                     </div>
                   </div>
                 </form>
@@ -311,7 +319,7 @@
           
           <tr>
             <td>
-              ถ่ายเอกสาร จำนวน {{order.book()}} เล่ม
+              ถ่ายเอกสาร จำนวน {{schema.numcopy.item}} เล่ม
             </td>
             <td><span ng-bind="order.total_section2()|number"></span></td>
           </tr>

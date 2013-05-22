@@ -96,13 +96,17 @@ function OrderObject(order) {
     
   var h_copy = 0;
   var s_copy = 0;   
+  var n_copy = 0;   
   
   if(order.hardcopy.item) {
     h_copy = parseInt(order.hardcopy.item);
   }
   if(order.softcopy.item) {
     s_copy = parseInt(order.softcopy.item);
-  }              
+  }    
+    if(order.numcopy.item) {
+    n_copy = parseInt(order.numcopy.item);
+  }           
   
   this.book = function() {
     if(order.hardcopy.item) {
@@ -110,10 +114,23 @@ function OrderObject(order) {
     }
     if(order.softcopy.item) {
       s_copy = parseInt(order.softcopy.item);
-    }              
-    return h_copy + s_copy;
+    }     
+    
+    if(order.numcopy.item) {
+      n_copy = parseInt(order.numcopy.item);
+    }        
+    return n_copy;
   };
   
+  this.num_book = function() {
+    if(order.hardcopy.item) {
+      h_copy = parseInt(order.hardcopy.item);
+    }
+    if(order.softcopy.item) {
+      s_copy = parseInt(order.softcopy.item);
+    }     
+    return h_copy + s_copy;
+  };
   
   
   this.total_section_2p = function() {
@@ -128,18 +145,6 @@ function OrderObject(order) {
     }
     return num_page;
   };  
-  
-  
- /* 
-  this.total_section_2wd_A4 = (h_copy+s_copy) * order.total_section_2wd_A4;
-  this.total_section_2wd_F4 = (h_copy+s_copy) * order.total_section_2wd_F4;
-  this.total_section_2wd_B4 = (h_copy+s_copy) * order.total_section_2wd_B4;
-  this.total_section_2wd_A3 = (h_copy+s_copy) * order.total_section_2wd_A3;
-  this.total_section_2color_A4 = (h_copy+s_copy) * order.total_section_2color_A4;
-  this.total_section_2color_F4 = (h_copy+s_copy) * order.total_section_2color_F4;
-  this.total_section_2color_B4 = (h_copy+s_copy) * order.total_section_2color_B4;
-  this.total_section_2color_A3 = (h_copy+s_copy) * order.total_section_2color_A3;
- */ 
   
   this.total_section2 = function() {    
     var preface_item = 0;
@@ -174,19 +179,7 @@ function OrderObject(order) {
       
     return copy_price * self.book();
 };  
-  
- /*   
-    return (h_copy+s_copy) * (order.total_section_2p + 
-      order.total_section_2wd_A4 + 
-      order.total_section_2wd_F4+ 
-      order.total_section_2wd_B4+ 
-      order.total_section_2wd_A3+ 
-      order.total_section_2color_A4+ 
-      order.total_section_2color_F4+ 
-      order.total_section_2color_B4+ 
-      order.total_section_2color_A3);  
- */     
-      
+
   var num_page = parseInt(order.more.item);        
   this.extra_page = 0;
   this.del_page = 0;
@@ -281,20 +274,6 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
     Order.get({document:$routeParams.id}, function(order) {
       console.log(order);
       
-      // remove currentdata.get
-      /*
-      CurrentDate.get(function(response) {            
-        order['date'] = {};
-        order.date['date'] = response.date;
-        order.date['year'] = response.year + 543;
-        order.date['month'] = response.month + 1;
-        var month_array = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-        order.date['month'] = month_array[response.month];        
-      });
-      */
-      
-      
-      
       var order_obj = new OrderObject(order);
       order['book'] = order_obj.book();
       order['extra_page'] = (order.format.item - 200) * order_obj.book();
@@ -308,26 +287,26 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       order['extra_price'] = $filter('number')(order_obj.extra_page);      
       //console.log(order.total_1_price);
       
-      order['page_21'] = $filter('number')((order_obj.order.preface.item) * order_obj.book());
-      order['page_22'] = $filter('number')((order.wd_A4.item) * order_obj.book());   
-      order['page_23'] = $filter('number')((order.wd_F4.item) * order_obj.book());         
-      order['page_24'] = $filter('number')((order.wd_B4.item) * order_obj.book());   
-      order['page_25'] = $filter('number')((order.wd_A3.item) * order_obj.book());     
-      order['page_26'] = $filter('number')((order.color_A4.item) * order_obj.book());   
-      order['page_27'] = $filter('number')((order.color_F4.item) * order_obj.book());         
-      order['page_28'] = $filter('number')((order.color_B4.item) * order_obj.book());   
-      order['page_29'] = $filter('number')((order.color_A3.item) * order_obj.book());  
-      order['total_2_page'] = $filter('number')(order.more.item * order_obj.book());
+      order['page_21'] = $filter('number')(order_obj.order.preface.item * order_obj.order.numcopy.item); 
+      order['page_22'] = $filter('number')(order.wd_A4.item * order_obj.order.numcopy.item);   
+      order['page_23'] = $filter('number')(order.wd_F4.item * order_obj.order.numcopy.item);         
+      order['page_24'] = $filter('number')(order.wd_B4.item * order_obj.order.numcopy.item);   
+      order['page_25'] = $filter('number')(order.wd_A3.item * order_obj.order.numcopy.item);     
+      order['page_26'] = $filter('number')(order.color_A4.item * order_obj.order.numcopy.item);   
+      order['page_27'] = $filter('number')(order.color_F4.item * order_obj.order.numcopy.item);         
+      order['page_28'] = $filter('number')(order.color_B4.item * order_obj.order.numcopy.item);   
+      order['page_29'] = $filter('number')(order.color_A3.item * order_obj.order.numcopy.item);  
+      order['total_2_page'] = $filter('number')(order.more.item * order_obj.order.numcopy.item);
       
       order['price_21'] = $filter('number')(order_obj.total_section_2p());
-      order['price_22'] = $filter('number')(order_obj.order.total_section_2wd_A4 * order_obj.book());   
-      order['price_23'] = $filter('number')(order_obj.order.total_section_2wd_F4 * order_obj.book());          
-      order['price_24'] = $filter('number')(order_obj.order.total_section_2wd_B4 * order_obj.book());  
-      order['price_25'] = $filter('number')(order_obj.order.total_section_2wd_A3 * order_obj.book());           
-      order['price_26'] = $filter('number')(order_obj.order.total_section_2color_A4 * order_obj.book());   
-      order['price_27'] = $filter('number')(order_obj.order.total_section_2color_F4 * order_obj.book());          
-      order['price_28'] = $filter('number')(order_obj.order.total_section_2color_B4 * order_obj.book());  
-      order['price_29'] = $filter('number')(order_obj.order.total_section_2color_A3 * order_obj.book());     
+      order['price_22'] = $filter('number')(order_obj.order.total_section_2wd_A4 * order_obj.order.numcopy.item);   
+      order['price_23'] = $filter('number')(order_obj.order.total_section_2wd_F4 * order_obj.order.numcopy.item);          
+      order['price_24'] = $filter('number')(order_obj.order.total_section_2wd_B4 * order_obj.order.numcopy.item);  
+      order['price_25'] = $filter('number')(order_obj.order.total_section_2wd_A3 * order_obj.order.numcopy.item);           
+      order['price_26'] = $filter('number')(order_obj.order.total_section_2color_A4 * order_obj.order.numcopy.item);   
+      order['price_27'] = $filter('number')(order_obj.order.total_section_2color_F4 * order_obj.order.numcopy.item);          
+      order['price_28'] = $filter('number')(order_obj.order.total_section_2color_B4 * order_obj.order.numcopy.item);  
+      order['price_29'] = $filter('number')(order_obj.order.total_section_2color_A3 * order_obj.order.numcopy.item);     
       order['total_2_price']= $filter('number')(order_obj.total_section2());
       
       order['total_3_price'] = $filter('number')(order.total_section_3);
@@ -336,22 +315,36 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4);
       
       order['total_section_1h'] = $filter('number')(order.total_section_1h);
+      order['num_book'] = $filter('number')(order_obj.num_book());
       
+          
     
+      var download_path = prefix+'/bill/form';
+      var form_element = document.createElement('form');
+      angular.element(form_element).attr('action',download_path);
+      angular.element(form_element).attr('method','POST');
+
+      var input_elm = document.createElement('input');
+      angular.element(input_elm).attr('type','hidden');
+      angular.element(input_elm).attr('name','order');
+      angular.element(input_elm).attr('value',JSON.stringify(order));
+      
+      form_element.appendChild(input_elm);
+      form_element.submit();    
+
+    
+    /*
       var dataUrl = '/bill/form?order=' + JSON.stringify(order);      
+      console.log(dataUrl);
       var link = document.createElement('a');
       angular.element(link)
         .attr('href', dataUrl)
         .attr('download', 'test.xml') // Pretty much only works in chrome
       link.click();                      
+    */
     });
-    
-    //$http.get('/bill/form').success(function(res) {            
-    //  console.log(res);
-      
-      
-  };
   
+  };
   
   
   $scope.pay = function() {
@@ -413,21 +406,6 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
     }
     
-   /* 
-    order = response;
-    
-    $scope.total = order.total_section_1h + 
-      order.total_section_1s + 
-      $scope.extra_page + 
-      order.total_section_2p + 
-      order.total_section_2wd_A4 + 
-      order.total_section_2wd_F4+ 
-      order.total_section_2wd_B4+ 
-      order.total_section_2wd_A3+ 
-      order.total_section_2color_A4+ order.total_section_2color_F4+ 
-      order.total_section_2color_B4+ order.total_section_2color_A3 + 
-      order.total_section_3 + order.total_section_4;    
-  */ 
   });   
   
   $scope.pay = function() {
@@ -494,7 +472,7 @@ function MainController($scope, Student, Schema, Order, Program, User, Logout,$h
   
       
   $scope.isNotStudent = function() {    
-    if($scope.student) return false;
+    if($scope.student && $scope.schema.type && $scope.schema.numcopy.item && $scope.schema.cdcopy.item && $scope.schema.format.item && $scope.schema.returnthesis) return false;
     return true;
   }
   
@@ -528,17 +506,22 @@ function MainController($scope, Student, Schema, Order, Program, User, Logout,$h
     $scope.schema = $scope.order.order;      
     
     
-    $scope.$watch("schema.hardcopy.item + schema.softcopy.item + schema.more.item", function(n, o) {    
+    $scope.$watch("schema.hardcopy.item + schema.softcopy.item + schema.more.item + schema.numcopy.item", function(n, o) {    
       $scope.schema.total_section_1h = $scope.schema.hardcopy.item * $scope.schema.hardcopy.price;
       $scope.schema.total_section_1s = $scope.schema.softcopy.item * $scope.schema.softcopy.price;      
+      $scope.schema.total_section_1n = $scope.schema.numcopy.item * $scope.schema.numcopy.price;  
           
       if(isNaN($scope.schema.total_section_1h)) {
         $scope.schema.total_section_1h = 0;
       }
       
       if(isNaN($scope.schema.total_section_1s)) {
-        $scope.schema.total_section_1s = 0;n * $scope.schema.wd_A4.price 
+        $scope.schema.total_section_1s = 0; 
       }      
+      
+      if(isNaN($scope.schema.total_section_1n)) {
+       $scope.schema.total_section_1n = 0;
+      }
       
       $scope.total_section_1 = $scope.schema.total_section_1h + $scope.schema.total_section_1s;            
       if(!$scope.schema.more) {
