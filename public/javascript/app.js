@@ -106,15 +106,19 @@ function OrderObject(order) {
   }    
     if(order.numcopy.item) {
     n_copy = parseInt(order.numcopy.item);
-  }           
+  }    
+    
+  this.hard_copy = h_copy;
   
   this.book = function() {
+    /*
     if(order.hardcopy.item) {
       h_copy = parseInt(order.hardcopy.item);
     }
     if(order.softcopy.item) {
       s_copy = parseInt(order.softcopy.item);
-    }     
+    }      
+    */   
     
     if(order.numcopy.item) {
       n_copy = parseInt(order.numcopy.item);
@@ -137,14 +141,23 @@ function OrderObject(order) {
      return self.book() * order.total_section_2p;
   };
   
+  this.extra_page_size = function() {
+    var num_page = parseInt(order.more.item);
+    if(num_page - 200 > 0) {
+      return num_page - 200;
+    }
+    return 0;
+  };
   
   this.extra_page = function() {
     var num_page = parseInt(order.more.item);
-    if(num_page - 200 > 0) {
+    if(num_page - 200 > 0) {      
       return Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+    } else {
+      return 0;
     }
-    return num_page;
-  };  
+  }; 
+   
   
   this.total_section2 = function() {    
     var preface_item = 0;
@@ -178,19 +191,19 @@ function OrderObject(order) {
       (color_A3_item * order.color_A3.price);      ;
       
     return copy_price * self.book();
-};  
-
+  };  
+/*
   var num_page = parseInt(order.more.item);        
   this.extra_page = 0;
   this.del_page = 0;
   
   if(num_page - 200 > 0) {  
     this.del_page = Math.ceil(num_page-200);
-    this.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+    this.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy);
   }
     
   // this.total = this.total_section2+ ....
-    
+   */ 
 }
 
 function OrderStatusController($scope, $routeParams, $location, Order, Student, Program, CurrentDate, Payment, User, Logout) {
@@ -277,15 +290,17 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       var order_obj = new OrderObject(order);
       order['book'] = order_obj.book();
       order['extra_page'] = (order.format.item - 200) * order_obj.book();
-      
-      order['total_1_price'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page);
-      
+    
       //console.log(order);
+      //order['extra_page'] = $filter('number')(order.extra_page);
       
-      order['extra_page'] = $filter('number')(order.extra_page);
+      order['extra_price1'] = $filter('number')(order.extra_price);
       
-      order['extra_price'] = $filter('number')(order_obj.extra_page);      
+      order['extra_price'] = $filter('number')(order_obj.extra_page());   
+      order['extra_page'] = $filter('number')(order_obj.extra_page_size());
+      
       //console.log(order.total_1_price);
+      order['total_1_price'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page());
       
       order['page_21'] = $filter('number')(order_obj.order.preface.item * order_obj.order.numcopy.item); 
       order['page_22'] = $filter('number')(order.wd_A4.item * order_obj.order.numcopy.item);   
@@ -312,7 +327,7 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       order['total_3_price'] = $filter('number')(order.total_section_3);
       order['total_4_price'] = $filter('number')(order.total_section_4);    
       
-      order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4);
+      order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page() + order_obj.total_section2() + order.total_section_3 + order.total_section_4);
       
       order['total_section_1h'] = $filter('number')(order.total_section_1h);
       order['num_book'] = $filter('number')(order_obj.num_book());
@@ -369,7 +384,9 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       $scope.date['month'] = response.month + 1;
       var month_array = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
       $scope.date['month'] = month_array[response.month];
-      $scope.order.date = $scope.date;
+      if(!$scope.order.payment_id) {
+        $scope.order.date = $scope.date;
+      }
     });
     
     Student.get({
@@ -524,6 +541,7 @@ function MainController($scope, Student, Schema, Order, Program, User, Logout,$h
       }
       
       $scope.total_section_1 = $scope.schema.total_section_1h + $scope.schema.total_section_1s;            
+      
       if(!$scope.schema.more) {
         $scope.schema.more = {'item':0};
       }                        
@@ -585,6 +603,14 @@ function MainController($scope, Student, Schema, Order, Program, User, Logout,$h
     var order = angular.extend({}, $scope.schema, {_id:undefined});
     console.log(order);
     Order.save(order, function(response) {
+ 
+      
+       if(response.error == 401) {
+        self.message("คุณยังไม่ได้รับอนุมัติในการดำเนินการ");        
+      } else {
+        self.message("บันทึกข้อมูลเรียบร้อยแล้ว");        
+      }
+  
       console.log(response);
     //  $location.path('/edit/' + project._id.$oid);
     });

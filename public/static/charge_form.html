@@ -82,14 +82,16 @@
          </label>
            
          <label class="control-label " ng-show="order.more.item">
-           จำนวนหน้า   {{order.more.item}} หน้า เป็นเงิน   {{extra_page|number}}  บาท
+           จำนวนหน้าทั้งหมด  {{order.more.item}} หน้า (จำนวนหน้ามากกว่า 200 หน้า) เป็นเงิน   {{order_obj.extra_page()|number}}  บาท
          </label>      
          
-         <label class="control-label"> รวมเป็นเงิน {{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</label>          
+         <abbr title="รวมเป็นเงิน ค่าจัดทำเล่ม" class="initialism">   
+           <label class="control-label"> <strong>รวมเป็นเงิน {{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</strong></label>        
+         </abbr>    
     </div> 
  
           <div class="control-group">
-      <label><strong>(2) ถ่ายเอกสาร</strong></label> 
+      <label><strong>(2) ถ่ายเอกสาร</strong> จำนวน {{order.numcopy.item}} เล่ม </label> 
          
          <label class="control-label" ng-show="order.preface.item">
            <strong>ส่วนแรก</strong> 
@@ -131,8 +133,10 @@
           <label class="control-label"> 
           ขนาด A3 จำนวน   {{order.color_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A3  * order_obj.book())|number}} บาท         
           </label>         
-                  
-         <label class="control-label"> รวมเป็นเงิน {{order_obj.total_section2()|number}} บาท</label>         
+            
+         <abbr title="รวมเป็นเงิน ค่าถ่ายเอกสาร" class="initialism">     
+             <label class="control-label"> <strong>รวมเป็นเงิน {{order_obj.total_section2()|number}} บาท </strong></label>   
+         </abbr>        
     </div> 
   
           <div class="control-group">
@@ -344,8 +348,8 @@
  
           <tr>
             <td>  &nbsp;&nbsp;&nbsp; 1.3 คิดเพิ่ม (ส่วนที่เกิน 200 หน้า) </td>
-            <td><span class="pull-right">{{(order.format.item - 200) * order_obj.book()|number}} หน้า</td>
-            <td><span class="pull-right">{{order_obj.extra_page|number}} บาท</span></td>           
+            <td><span class="pull-right"> {{order_obj.extra_page_size()}} หน้า</td>
+            <td><span class="pull-right">{{order_obj.extra_page()|number}} บาท</span></td>           
           </tr>  
 
           <tr>
@@ -450,9 +454,10 @@
          </div>
       <br>
       <div class="span6">
-        <center> <label>.......................................</label></center>  
-        <center> <label>{{order.date.date}}  {{order.date.month}}  {{order.date.year}}</label></center>      
-        <small><center><label>เจ้าหน้าที่ผู้รับเงิน</label></center></small>             
+        <center> <label>.............................................</label></center>  
+        <center> <label>(..............................................)</label></center>        
+        <center> <label>{{order.date.date}}  {{order.date.month}}  {{order.date.year}}</label></center>       
+        <small><center><label>เจ้าหน้าที่ผู้รับเงิน</label></center></small>            
       </div>
      </div>
         
