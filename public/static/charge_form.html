@@ -73,20 +73,20 @@
           
          <label class="control-label" ng-show="order.hardcopy.item">         
            <strong>ปกแข็ง</strong> 
-           จำนวน {{order.hardcopy.item}} เล่ม เป็นเงิน {{order.total_section_1h|number}} บาท
+           จำนวน {{order.hardcopy.item}} เล่ม เป็นเงิน {{order.total_section_1h|number:2}} บาท
          </label>
          
          <label class="control-label" ng-show="order.softcopy.item">
            <strong>ปกอ่อน</strong> 
-           จำนวน   {{order.softcopy.item}} เล่ม เป็นเงิน   {{order.total_section_1s|number}} บาท
+           จำนวน   {{order.softcopy.item}} เล่ม เป็นเงิน   {{order.total_section_1s|number:2}} บาท
          </label>
            
          <label class="control-label " ng-show="order.more.item">
-           จำนวนหน้าทั้งหมด  {{order.more.item}} หน้า (จำนวนหน้ามากกว่า 200 หน้า) เป็นเงิน   {{order_obj.extra_page()|number}}  บาท
+           จำนวนหน้าทั้งหมด  {{order.more.item}} หน้า (จำนวนหน้ามากกว่า 200 หน้า) เป็นเงิน   {{order_obj.extra_page()|number:2}}  บาท
          </label>      
          
          <abbr title="รวมเป็นเงิน ค่าจัดทำเล่ม" class="initialism">   
-           <label class="control-label"> <strong>รวมเป็นเงิน {{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</strong></label>        
+           <label class="control-label"> <strong>รวมเป็นเงิน {{order.total_section_1h + order.total_section_1s + extra_page|number:2}} บาท</strong></label>        
          </abbr>    
     </div> 
  
@@ -95,64 +95,64 @@
          
          <label class="control-label" ng-show="order.preface.item">
            <strong>ส่วนแรก</strong> 
-           จำนวน   {{order_obj.order.preface.item}} หน้า เป็นเงิน   {{order_obj.total_section_2p()|number}}  บาท
+           จำนวน   {{order_obj.order.preface.item}} หน้า เป็นเงิน   {{order_obj.total_section_2p()|number:2}}  บาท
          </label>
          
          <label class="control-label"><strong>ส่วนเนื้อหา (ขาว-ดำ)</strong></label>
          
          <label class="control-label"> 
-          ขนาด A4 จำนวน   {{order.wd_A4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_A4 * order_obj.book())|number}} บาท
+          ขนาด A4 จำนวน   {{order.wd_A4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_A4 * order_obj.book())|number:2}} บาท
          </label> 
           
           <label class="control-label"> 
-          ขนาด F4 จำนวน   {{order.wd_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_F4 * order_obj.book())|number}} บาท         
+          ขนาด F4 จำนวน   {{order.wd_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_F4 * order_obj.book())|number:2}} บาท         
           </label>
            
           <label class="control-label"> 
-          ขนาด B4 จำนวน   {{order.wd_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_B4 * order_obj.book())|number}} บาท         
+          ขนาด B4 จำนวน   {{order.wd_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_B4 * order_obj.book())|number:2}} บาท         
           </label>
                    
           <label class="control-label"> 
-          ขนาด A3 จำนวน   {{order.wd_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_A3  * order_obj.book())|number}} บาท         
+          ขนาด A3 จำนวน   {{order.wd_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2wd_A3  * order_obj.book())|number:2}} บาท         
           </label>
 
          <label class="control-label"><strong>ส่วนเนื้อหา (สี)</strong></label> 
          
           <label class="control-label"> 
-          ขนาด A4 จำนวน   {{order.color_A4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A4 * order_obj.book())|number}} บาท
+          ขนาด A4 จำนวน   {{order.color_A4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A4 * order_obj.book())|number:2}} บาท
          </label> 
           
           <label class="control-label"> 
-          ขนาด F4 จำนวน   {{order.color_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_F4  * order_obj.book())|number}} บาท         
+          ขนาด F4 จำนวน   {{order.color_F4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_F4  * order_obj.book())|number:2}} บาท         
           </label>
            
           <label class="control-label"> 
-          ขนาด B4 จำนวน   {{order.color_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_B4  * order_obj.book())|number}} บาท         
+          ขนาด B4 จำนวน   {{order.color_B4.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_B4  * order_obj.book())|number:2}} บาท         
           </label>
                    
           <label class="control-label"> 
-          ขนาด A3 จำนวน   {{order.color_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A3  * order_obj.book())|number}} บาท         
+          ขนาด A3 จำนวน   {{order.color_A3.item}} หน้า เป็นเงิน {{(order_obj.order.total_section_2color_A3  * order_obj.book())|number:2}} บาท         
           </label>         
             
          <abbr title="รวมเป็นเงิน ค่าถ่ายเอกสาร" class="initialism">     
-             <label class="control-label"> <strong>รวมเป็นเงิน {{order_obj.total_section2()|number}} บาท </strong></label>   
+             <label class="control-label"> <strong>รวมเป็นเงิน {{order_obj.total_section2()|number:2}} บาท </strong></label>   
          </abbr>        
     </div> 
   
           <div class="control-group">
       <label><strong>(3) จัดทำซีดีพร้อมสกรีนแผ่น</strong></label> 
          <label class="control-label " ng-show = "order.cdcopy.item">
-          จำนวน   {{order.cdcopy.item}} แผ่น เป็นเงิน {{order.total_section_3|number}} บาท</label>         
+          จำนวน   {{order.cdcopy.item}} แผ่น เป็นเงิน {{order.total_section_3|number:2}} บาท</label>         
     </div>
  
           <div class="control-group">
       <label><strong>(4) จัดรูปแบบ</strong></label> 
          <label class="control-label" ng-show = "order.format.item">
-           จำนวน   {{order.format.item}} หน้า เป็นเงิน {{order.total_section_4|number}} บาท</label>         
+           จำนวน   {{order.format.item}} หน้า เป็นเงิน {{order.total_section_4|number:2}} บาท</label>         
     </div>
   
           <div class="control-group">
-      <label><strong>รวมเป็นเงินทั้งสิ้น  {{order.total_section_1h+order.total_section_1s+extra_page+order_obj.total_section2()+order.total_section_3+order.total_section_4|number}} บาท</strong></label>         
+      <label><strong>รวมเป็นเงินทั้งสิ้น  {{order.total_section_1h+order.total_section_1s+extra_page+order_obj.total_section2()+order.total_section_3+order.total_section_4|number:2}} บาท</strong></label>         
     </div>    
                 
           <div class="control-group">      
@@ -330,13 +330,13 @@
           <tr>
             <td> &nbsp;&nbsp;&nbsp; 1.1 ปกแข็ง (ไม่เกิน 200 หน้า) </td>
             <td><span class="pull-right">{{order.hardcopy.item}} เล่ม </td>
-            <td><span class="pull-right">{{order.total_section_1h|number}} บาท</span></td>         
+            <td><span class="pull-right">{{order.total_section_1h|number:2}} บาท</span></td>         
           </tr>  
             
            <tr>
             <td>  &nbsp;&nbsp;&nbsp; 1.2 ปกอ่อน (ไม่เกิน 200 หน้า)</td>
             <td><span class="pull-right">{{order.softcopy.item}} เล่ม</td>
-            <td><span class="pull-right">{{order.total_section_1s|number}} บาท</span></td>      
+            <td><span class="pull-right">{{order.total_section_1s|number:2}} บาท</span></td>      
           </tr>            
  
            <tr>
@@ -349,14 +349,14 @@
           <tr>
             <td>  &nbsp;&nbsp;&nbsp; 1.3 คิดเพิ่ม (ส่วนที่เกิน 200 หน้า) </td>
             <td><span class="pull-right"> {{order_obj.extra_page_size()}} หน้า</td>
-            <td><span class="pull-right">{{order_obj.extra_page()|number}} บาท</span></td>           
+            <td><span class="pull-right">{{order_obj.extra_page()|number:2}} บาท</span></td>           
           </tr>  
 
           <tr>
             <td><center><strong> รวมค่าจัดทำเล่ม </strong></center>
             </td>
             <td><span class="pull-right"></td>
-            <td><span class="pull-right"><strong>{{order.total_section_1h + order.total_section_1s + extra_page|number}} บาท</strong></span></td>            
+            <td><span class="pull-right"><strong>{{order.total_section_1h + order.total_section_1s + extra_page|number:2}} บาท</strong></span></td>            
           </tr>  
             
           <tr>
@@ -368,81 +368,81 @@
           <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.1 ส่วนแรก </td>
             <td><span class="pull-right">{{order_obj.order.preface.item * order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{order_obj.total_section_2p()|number}}  บาท</span></td>
+            <td><span class="pull-right">{{order_obj.total_section_2p()|number:2}}  บาท</span></td>
           </tr>          
           
            <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.2 ส่วนเนื้อหา (ขาว-ดำ) A4 </td>
               <td><span class="pull-right">{{order.wd_A4.item * order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_A4 * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_A4 * order_obj.book())|number:2}} บาท</span></td>
             </tr>
             
           <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.3 ส่วนเนื้อหา (ขาว-ดำ) F4 </td>
             <td><span class="pull-right">{{order.wd_F4.item * order_obj.book()|number}} หน้า </span></td>
-            <td><span class="pull-right"> {{(order_obj.order.total_section_2wd_F4 * order_obj.book())|number}} บาท <span></td>
+            <td><span class="pull-right"> {{(order_obj.order.total_section_2wd_F4 * order_obj.book())|number:2}} บาท <span></td>
           </tr>         
  
            <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.4 ส่วนเนื้อหา (ขาว-ดำ) B4 </td>
             <td><span class="pull-right">{{order.wd_B4.item * order_obj.book()|number}} หน้า </span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_B4 * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_B4 * order_obj.book())|number:2}} บาท</span></td>
           </tr>          
           
           <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.5 ส่วนเนื้อหา (ขาว-ดำ) A3 </td>
             <td><span class="pull-right">{{order.wd_A3.item* order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_A3  * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2wd_A3  * order_obj.book())|number:2}} บาท</span></td>
           </tr> 
  
            <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.6 ส่วนเนื้อหา (สี) A4 </td>
             <td><span class="pull-right">{{order.color_A4.item* order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2color_A4 * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2color_A4 * order_obj.book())|number:2}} บาท</span></td>
           </tr> 
  
             <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.7 ส่วนเนื้อหา (สี) F4 </td>
             <td><span class="pull-right">{{order.color_F4.item* order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2color_F4  * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2color_F4  * order_obj.book())|number:2}} บาท</span></td>
           </tr> 
           
             <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.8 ส่วนเนื้อหา (สี) B4 </td>
             <td><span class="pull-right">{{order.color_B4.item* order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2color_B4  * order_obj.book())|number}} บาท</span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2color_B4  * order_obj.book())|number:2}} บาท</span></td>
           </tr>          
           
            <tr>
             <td> &nbsp;&nbsp;&nbsp; 2.9 ส่วนเนื้อหา (สี) A3 </td>
             <td><span class="pull-right">{{order.color_A3.item* order_obj.book()|number}} หน้า</span></td>
-            <td><span class="pull-right">{{(order_obj.order.total_section_2color_A3  * order_obj.book())|number}} บาท </span></td>
+            <td><span class="pull-right">{{(order_obj.order.total_section_2color_A3  * order_obj.book())|number:2}} บาท </span></td>
           </tr>           
           
            <tr>
             <td> <center> <strong>รวมค่าถ่ายเอกสาร </strong></center> 
             </td>
             <td><span class="pull-right"><strong>{{order.more.item * order_obj.book()|number}} หน้า </strong></td>
-            <td><span class="pull-right"><strong>{{order_obj.total_section2()|number}} บาท </strong></span></td>            
+            <td><span class="pull-right"><strong>{{order_obj.total_section2()|number:2}} บาท </strong></span></td>            
           </tr>           
         
           <tr>
             <td>3.  ค่าจัดทำซีดี พร้อมสกรีนแผ่น</td>
             <td><span class="pull-right">{{order.cdcopy.item}} แผ่น</span></td>
-            <td><span class="pull-right">{{order.total_section_3|number}} บาท</span></td>
+            <td><span class="pull-right">{{order.total_section_3|number:2}} บาท</span></td>
           </tr>
           
           <tr>
             <td>4.  ค่าจัดรูปแบบ</td>
             <td><span class="pull-right">{{order.format.item}} หน้า</span></td>
-            <td><span class="pull-right">{{order.total_section_4|number}} บาท</span></td>
+            <td><span class="pull-right">{{order.total_section_4|number:2}} บาท</span></td>
           </tr>
           
           <tr>
              <td><center><strong><span>รวมเป็นเงินทั้งสิ้น</span></strong></center></td>
              <td></td>
             <td>
-              <strong><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4|number}} บาท</span>
+              <strong><span class="pull-right">{{order.total_section_1h + order.total_section_1s + extra_page + order_obj.total_section2() + order.total_section_3 + order.total_section_4|number:2}} บาท</span>
               </strong>
             </td>
           </tr>          

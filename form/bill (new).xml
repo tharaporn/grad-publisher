@@ -325,7 +325,7 @@
                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                         <w:cs/>
                                                                                     </w:rPr>
-                                                                                    <w:t>{{order.date.date}}  {{order.date.month}}  {{order.date.year}}</w:t>
+                                                                                    <w:t>12  มิถุนายน  2556</w:t>
                                                                                 </w:r>
                                                                             </w:p>
                                                                         </w:txbxContent>
@@ -557,7 +557,7 @@
                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                 <w:cs/>
                                                                                             </w:rPr>
-                                                                                            <w:t>{{order.student.prefix_name}}{{order.student.first_name}}   {{order.student.last_name}}</w:t>
+                                                                                            <w:t>นายโสภณ   พันธุ์เพชร</w:t>
                                                                                         </w:r>
                                                                                     </w:p>
                                                                                 </w:txbxContent>
@@ -673,7 +673,7 @@
                                                                                                     <w:sz w:val="28"/>
                                                                                                     <w:cs/>
                                                                                                 </w:rPr>
-                                                                                                <w:t>{{order.student.level.name}}</w:t>
+                                                                                                <w:t>ปริญญาโท แบบ 2 ภาคการศึกษา (ปกติ)</w:t>
                                                                                             </w:r>
                                                                                         </w:p>
                                                                                     </w:txbxContent>
@@ -800,7 +800,7 @@
                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                         <w:cs/>
                                                                                                     </w:rPr>
-                                                                                                    <w:t>{{order.student.id}}</w:t>
+                                                                                                    <w:t>45060200</w:t>
                                                                                                 </w:r>
                                                                                             </w:p>
                                                                                         </w:txbxContent>
@@ -995,7 +995,7 @@
                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                             <w:cs/>
                                                                                                         </w:rPr>
-                                                                                                        <w:t>{{order.type}}</w:t>
+                                                                                                        <w:t>วิทยานิพนธ์</w:t>
                                                                                                     </w:r>
                                                                                                 </w:p>
                                                                                             </w:txbxContent>
@@ -1189,7 +1189,7 @@
                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                 <w:cs/>
                                                                                                             </w:rPr>
-                                                                                                            <w:t>{{order.student.faculty.name}}</w:t>
+                                                                                                            <w:t>คณะวิศวกรรมศาสตร์</w:t>
                                                                                                         </w:r>
                                                                                                     </w:p>
                                                                                                 </w:txbxContent>
@@ -1415,7 +1415,7 @@
                                                                                                                     <w:sz w:val="28"/>
                                                                                                                     <w:cs/>
                                                                                                                 </w:rPr>
-                                                                                                                <w:t>{{order.student.program.name}}</w:t>
+                                                                                                                <w:t>วิศวกรรมโยธา - (แผน ก แบบ ก 2)</w:t>
                                                                                                             </w:r>
                                                                                                         </w:p>
                                                                                                     </w:txbxContent>
@@ -1606,7 +1606,7 @@
                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                         <w:cs/>
                                                                                                                     </w:rPr>
-                                                                                                                    <w:t>{{order.tel.item}}</w:t>
+                                                                                                                    <w:t>top</w:t>
                                                                                                                 </w:r>
                                                                                                             </w:p>
                                                                                                         </w:txbxContent>
@@ -1947,7 +1947,7 @@
                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                         <w:cs/>
                                                                                                                                     </w:rPr>
-                                                                                                                                    <w:t>{{order.hardcopy.item}}</w:t>
+                                                                                                                                    <w:t>แ</w:t>
                                                                                                                                 </w:r>
                                                                                                                             </w:p>
                                                                                                                         </w:txbxContent>
@@ -2099,7 +2099,7 @@
                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                             <w:cs/>
                                                                                                                                         </w:rPr>
-                                                                                                                                        <w:t>{{order.total_section_1h}}</w:t>
+                                                                                                                                        <w:t>400</w:t>
                                                                                                                                     </w:r>
                                                                                                                                 </w:p>
                                                                                                                             </w:txbxContent>
@@ -2294,7 +2294,7 @@
                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                 <w:cs/>
                                                                                                                                             </w:rPr>
-                                                                                                                                            <w:t>{{order.softcopy.item}}</w:t>
+                                                                                                                                            <w:t>1</w:t>
                                                                                                                                         </w:r>
                                                                                                                                     </w:p>
                                                                                                                                 </w:txbxContent>
@@ -2448,7 +2448,7 @@
                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                     <w:cs/>
                                                                                                                                                 </w:rPr>
-                                                                                                                                                <w:t>{{order.total_section_1s}}</w:t>
+                                                                                                                                                <w:t>50</w:t>
                                                                                                                                             </w:r>
                                                                                                                                         </w:p>
                                                                                                                                     </w:txbxContent>
@@ -2653,7 +2653,7 @@
                                                                                                                                                         <w:bCs/>
                                                                                                                                                         <w:cs/>
                                                                                                                                                     </w:rPr>
-                                                                                                                                                    <w:t>{{order.num_book}}</w:t>
+                                                                                                                                                    <w:t>3</w:t>
                                                                                                                                                 </w:r>
                                                                                                                                             </w:p>
                                                                                                                                         </w:txbxContent>
@@ -2905,7 +2905,7 @@
                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                             <w:cs/>
                                                                                                                                                         </w:rPr>
-                                                                                                                                                        <w:t>{{order.extra_page}}</w:t>
+                                                                                                                                                        <w:t>1</w:t>
                                                                                                                                                     </w:r>
                                                                                                                                                 </w:p>
                                                                                                                                             </w:txbxContent>
@@ -3065,7 +3065,7 @@
                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                 <w:cs/>
                                                                                                                                                             </w:rPr>
-                                                                                                                                                            <w:t>{{order.extra_price}}</w:t>
+                                                                                                                                                            <w:t>30</w:t>
                                                                                                                                                         </w:r>
                                                                                                                                                     </w:p>
                                                                                                                                                 </w:txbxContent>
@@ -3304,7 +3304,7 @@
                                                                                                                                                                     <w:bCs/>
                                                                                                                                                                     <w:cs/>
                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                <w:t>{{order.total_1_price}}</w:t>
+                                                                                                                                                                <w:t>480</w:t>
                                                                                                                                                             </w:r>
                                                                                                                                                         </w:p>
                                                                                                                                                     </w:txbxContent>
@@ -3522,7 +3522,7 @@
                                                                                                                                                                         <w:bCs/>
                                                                                                                                                                         <w:cs/>
                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                    <w:t>{{order.numcopy.item}}</w:t>
+                                                                                                                                                                    <w:t>3</w:t>
                                                                                                                                                                 </w:r>
                                                                                                                                                             </w:p>
                                                                                                                                                         </w:txbxContent>
@@ -3855,7 +3855,7 @@
                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                            <w:t>{{order.page_21}}</w:t>
+                                                                                                                                                                            <w:t>30</w:t>
                                                                                                                                                                         </w:r>
                                                                                                                                                                     </w:p>
                                                                                                                                                                 </w:txbxContent>
@@ -4015,7 +4015,7 @@
                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                <w:t>{{order.price_21}}</w:t>
+                                                                                                                                                                                <w:t>15.00</w:t>
                                                                                                                                                                             </w:r>
                                                                                                                                                                         </w:p>
                                                                                                                                                                     </w:txbxContent>
@@ -4210,7 +4210,7 @@
                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                    <w:t>{{order.page_22}}</w:t>
+                                                                                                                                                                                    <w:t>573</w:t>
                                                                                                                                                                                 </w:r>
                                                                                                                                                                             </w:p>
                                                                                                                                                                         </w:txbxContent>
@@ -4364,7 +4364,7 @@
                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                        <w:t>{{order.price_22}}</w:t>
+                                                                                                                                                                                        <w:t>286.50</w:t>
                                                                                                                                                                                     </w:r>
                                                                                                                                                                                 </w:p>
                                                                                                                                                                             </w:txbxContent>
@@ -4572,7 +4572,7 @@
                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                            <w:t>{{order.page_23}}</w:t>
+                                                                                                                                                                                            <w:t>0</w:t>
                                                                                                                                                                                         </w:r>
                                                                                                                                                                                     </w:p>
                                                                                                                                                                                 </w:txbxContent>
@@ -4726,7 +4726,7 @@
                                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                <w:t>{{order.price_23}}</w:t>
+                                                                                                                                                                                                <w:t>0</w:t>
                                                                                                                                                                                             </w:r>
                                                                                                                                                                                         </w:p>
                                                                                                                                                                                     </w:txbxContent>
@@ -4934,7 +4934,7 @@
                                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                                    <w:t>{{order.page_24}}</w:t>
+                                                                                                                                                                                                    <w:t>0</w:t>
                                                                                                                                                                                                 </w:r>
                                                                                                                                                                                             </w:p>
                                                                                                                                                                                         </w:txbxContent>
@@ -5088,7 +5088,7 @@
                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                        <w:t>{{order.price_24}}</w:t>
+                                                                                                                                                                                                        <w:t>0</w:t>
                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                             </w:txbxContent>
@@ -5296,7 +5296,7 @@
                                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                                            <w:t>{{order.page_25}}</w:t>
+                                                                                                                                                                                                            <w:t>0</w:t>
                                                                                                                                                                                                         </w:r>
                                                                                                                                                                                                     </w:p>
                                                                                                                                                                                                 </w:txbxContent>
@@ -5450,7 +5450,7 @@
                                                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                                <w:t>{{order.price_25}}</w:t>
+                                                                                                                                                                                                                <w:t>0</w:t>
                                                                                                                                                                                                             </w:r>
                                                                                                                                                                                                         </w:p>
                                                                                                                                                                                                     </w:txbxContent>
@@ -5660,7 +5660,7 @@
                                                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                                                    <w:t>{{order.page_26}}</w:t>
+                                                                                                                                                                                                                    <w:t>0</w:t>
                                                                                                                                                                                                                 </w:r>
                                                                                                                                                                                                             </w:p>
                                                                                                                                                                                                         </w:txbxContent>
@@ -5816,7 +5816,7 @@
                                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                                        <w:t>{{order.price_26}}</w:t>
+                                                                                                                                                                                                                        <w:t>0</w:t>
                                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                                             </w:txbxContent>
@@ -6024,7 +6024,7 @@
                                                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                                                            <w:t>{{order.page_27}}</w:t>
+                                                                                                                                                                                                                            <w:t>0</w:t>
                                                                                                                                                                                                                         </w:r>
                                                                                                                                                                                                                     </w:p>
                                                                                                                                                                                                                 </w:txbxContent>
@@ -6178,7 +6178,7 @@
                                                                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                                                <w:t>{{order.price_27}}</w:t>
+                                                                                                                                                                                                                                <w:t>0</w:t>
                                                                                                                                                                                                                             </w:r>
                                                                                                                                                                                                                         </w:p>
                                                                                                                                                                                                                     </w:txbxContent>
@@ -6386,7 +6386,7 @@
                                                                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                                                                    <w:t>{{order.page_28}}</w:t>
+                                                                                                                                                                                                                                    <w:t>0</w:t>
                                                                                                                                                                                                                                 </w:r>
                                                                                                                                                                                                                             </w:p>
                                                                                                                                                                                                                         </w:txbxContent>
@@ -6540,7 +6540,7 @@
                                                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                                                        <w:t>{{order.price_28}}</w:t>
+                                                                                                                                                                                                                                        <w:t>0</w:t>
                                                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                                                             </w:txbxContent>
@@ -6750,7 +6750,7 @@
                                                                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                                                                            <w:t>{{order.page_29}}</w:t>
+                                                                                                                                                                                                                                            <w:t>0</w:t>
                                                                                                                                                                                                                                         </w:r>
                                                                                                                                                                                                                                     </w:p>
                                                                                                                                                                                                                                 </w:txbxContent>
@@ -6906,7 +6906,7 @@
                                                                                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                                                                <w:t>{{order.price_29}}</w:t>
+                                                                                                                                                                                                                                                <w:t>0</w:t>
                                                                                                                                                                                                                                             </w:r>
                                                                                                                                                                                                                                         </w:p>
                                                                                                                                                                                                                                     </w:txbxContent>
@@ -7116,7 +7116,7 @@
                                                                                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                                                                                    <w:t>{{order.total_2_page}}</w:t>
+                                                                                                                                                                                                                                                    <w:t>603</w:t>
                                                                                                                                                                                                                                                 </w:r>
                                                                                                                                                                                                                                             </w:p>
                                                                                                                                                                                                                                         </w:txbxContent>
@@ -7272,7 +7272,7 @@
                                                                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                                                                        <w:t>{{order.total_2_price}}</w:t>
+                                                                                                                                                                                                                                                        <w:t>301.5</w:t>
                                                                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                                                                             </w:txbxContent>
@@ -7483,7 +7483,7 @@
                                                                                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                                                                                            <w:t>{{order.cdcopy.item}}</w:t>
+                                                                                                                                                                                                                                                            <w:t>1</w:t>
                                                                                                                                                                                                                                                         </w:r>
                                                                                                                                                                                                                                                     </w:p>
                                                                                                                                                                                                                                                 </w:txbxContent>
@@ -7645,7 +7645,7 @@
                                                                                                                                                                                                                                                                     <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                                                                                <w:t>{{order.total_3_price}}</w:t>
+                                                                                                                                                                                                                                                                <w:t>100</w:t>
                                                                                                                                                                                                                                                             </w:r>
                                                                                                                                                                                                                                                         </w:p>
                                                                                                                                                                                                                                                     </w:txbxContent>
@@ -7858,7 +7858,7 @@
                                                                                                                                                                                                                                                                         <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                         <w:cs/>
                                                                                                                                                                                                                                                                     </w:rPr>
-                                                                                                                                                                                                                                                                    <w:t>{{order.format.item}}</w:t>
+                                                                                                                                                                                                                                                                    <w:t>201</w:t>
                                                                                                                                                                                                                                                                 </w:r>
                                                                                                                                                                                                                                                             </w:p>
                                                                                                                                                                                                                                                         </w:txbxContent>
@@ -8021,7 +8021,7 @@
                                                                                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                                                                                        <w:t>{{order.total_4_price}}</w:t>
+                                                                                                                                                                                                                                                                        <w:t>2,412</w:t>
                                                                                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                                                                                             </w:txbxContent>
@@ -8189,7 +8189,7 @@
                                                                                                                                                                                                                                                                                 <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                                 <w:cs/>
                                                                                                                                                                                                                                                                             </w:rPr>
-                                                                                                                                                                                                                                                                            <w:t>{{order.money_text}}</w:t>
+                                                                                                                                                                                                                                                                            <w:t>จำนวนเงินที่ต้องระบุ</w:t>
                                                                                                                                                                                                                                                                         </w:r>
                                                                                                                                                                                                                                                                     </w:p>
                                                                                                                                                                                                                                                                 </w:txbxContent>
@@ -8410,7 +8410,7 @@
                                                                                                                                                                                                                                                                                     <w:bCs/>
                                                                                                                                                                                                                                                                                     <w:cs/>
                                                                                                                                                                                                                                                                                 </w:rPr>
-                                                                                                                                                                                                                                                                                <w:t>{{order.total_all}}</w:t>
+                                                                                                                                                                                                                                                                                <w:t>3,293.5</w:t>
                                                                                                                                                                                                                                                                             </w:r>
                                                                                                                                                                                                                                                                         </w:p>
                                                                                                                                                                                                                                                                     </w:txbxContent>
@@ -8767,7 +8767,7 @@
                                                                                                                                                                                                                                                                             <w:rFonts w:ascii="TH SarabunPSK" w:hAnsi="TH SarabunPSK" w:cs="TH SarabunPSK" w:hint="cs"/>
                                                                                                                                                                                                                                                                             <w:cs/>
                                                                                                                                                                                                                                                                         </w:rPr>
-                                                                                                                                                                                                                                                                        <w:t>{{order.date.date}}  {{order.date.month}}  {{order.date.year}}</w:t>
+                                                                                                                                                                                                                                                                        <w:t>12  มิถุนายน  2556</w:t>
                                                                                                                                                                                                                                                                     </w:r>
                                                                                                                                                                                                                                                                 </w:p>
                                                                                                                                                                                                                                                             </w:txbxContent>

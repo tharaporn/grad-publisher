@@ -294,13 +294,13 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       //console.log(order);
       //order['extra_page'] = $filter('number')(order.extra_page);
       
-      order['extra_price1'] = $filter('number')(order.extra_price);
+      order['extra_price1'] = $filter('number')(order.extra_price,2);
       
-      order['extra_price'] = $filter('number')(order_obj.extra_page());   
+      order['extra_price'] = $filter('number')(order_obj.extra_page(),2);   
       order['extra_page'] = $filter('number')(order_obj.extra_page_size());
       
       //console.log(order.total_1_price);
-      order['total_1_price'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page());
+      order['total_1_price'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page(),2);
       
       order['page_21'] = $filter('number')(order_obj.order.preface.item * order_obj.order.numcopy.item); 
       order['page_22'] = $filter('number')(order.wd_A4.item * order_obj.order.numcopy.item);   
@@ -313,23 +313,24 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       order['page_29'] = $filter('number')(order.color_A3.item * order_obj.order.numcopy.item);  
       order['total_2_page'] = $filter('number')(order.more.item * order_obj.order.numcopy.item);
       
-      order['price_21'] = $filter('number')(order_obj.total_section_2p());
-      order['price_22'] = $filter('number')(order_obj.order.total_section_2wd_A4 * order_obj.order.numcopy.item);   
-      order['price_23'] = $filter('number')(order_obj.order.total_section_2wd_F4 * order_obj.order.numcopy.item);          
-      order['price_24'] = $filter('number')(order_obj.order.total_section_2wd_B4 * order_obj.order.numcopy.item);  
-      order['price_25'] = $filter('number')(order_obj.order.total_section_2wd_A3 * order_obj.order.numcopy.item);           
-      order['price_26'] = $filter('number')(order_obj.order.total_section_2color_A4 * order_obj.order.numcopy.item);   
-      order['price_27'] = $filter('number')(order_obj.order.total_section_2color_F4 * order_obj.order.numcopy.item);          
-      order['price_28'] = $filter('number')(order_obj.order.total_section_2color_B4 * order_obj.order.numcopy.item);  
-      order['price_29'] = $filter('number')(order_obj.order.total_section_2color_A3 * order_obj.order.numcopy.item);     
-      order['total_2_price']= $filter('number')(order_obj.total_section2());
+      order['price_21'] = $filter('number')(order_obj.total_section_2p(),2);
+      order['price_22'] = $filter('number')(order_obj.order.total_section_2wd_A4 * order_obj.order.numcopy.item,2);         
+      order['price_23'] = $filter('number')(order_obj.order.total_section_2wd_F4 * order_obj.order.numcopy.item,2);          
+      order['price_24'] = $filter('number')(order_obj.order.total_section_2wd_B4 * order_obj.order.numcopy.item,2);  
+      order['price_25'] = $filter('number')(order_obj.order.total_section_2wd_A3 * order_obj.order.numcopy.item,2);           
+      order['price_26'] = $filter('number')(order_obj.order.total_section_2color_A4 * order_obj.order.numcopy.item,2);   
+      order['price_27'] = $filter('number')(order_obj.order.total_section_2color_F4 * order_obj.order.numcopy.item,2);          
+      order['price_28'] = $filter('number')(order_obj.order.total_section_2color_B4 * order_obj.order.numcopy.item,2);  
+      order['price_29'] = $filter('number')(order_obj.order.total_section_2color_A3 * order_obj.order.numcopy.item,2);     
+      order['total_2_price']= $filter('number')(order_obj.total_section2(),2);
       
-      order['total_3_price'] = $filter('number')(order.total_section_3);
-      order['total_4_price'] = $filter('number')(order.total_section_4);    
+      order['total_3_price'] = $filter('number')(order.total_section_3,2);
+      order['total_4_price'] = $filter('number')(order.total_section_4,2);    
       
-      order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page() + order_obj.total_section2() + order.total_section_3 + order.total_section_4);
+      order['total_all'] = $filter('number')(order.total_section_1h + order.total_section_1s + order_obj.extra_page() + order_obj.total_section2() + order.total_section_3 + order.total_section_4,2);
       
-      order['total_section_1h'] = $filter('number')(order.total_section_1h);
+      order['total_section_1h'] = $filter('number')(order.total_section_1h,2);
+       order['total_section_1s'] = $filter('number')(order.total_section_1s,2);
       order['num_book'] = $filter('number')(order_obj.num_book());
       
           
