@@ -3,7 +3,7 @@
 <div class="row-fluid">
   <div class="span12">                                
     <div class="row-fluid">
-      <div class="span9">      
+      <div class="span8">      
         <ul class="nav nav-tabs">
           <li><a href="#section1" data-toggle="tab">ข้อมูลนิสิต</a></li>
           <li><a href="#section2" data-toggle="tab">จัดทำเล่ม</a></li>
@@ -307,35 +307,35 @@
            </div>
       </div>
                     
-      <div class="span3">
+      <div class="span4">
         <table class="table table-bordered table-condensed">
           <caption><strong>รายการ</strong></caption>         
           <tr>
             <td>
               จัดทำเล่ม
             </td>
-            <td><span ng-bind="total_section_1|number"></span></td>
+            <td><span ng-bind="total_section_1|number:2"></span></td>
           </tr>
           
           <tr>
             <td>
               ถ่ายเอกสาร จำนวน {{schema.numcopy.item}} เล่ม
             </td>
-            <td><span ng-bind="order.total_section2()|number"></span></td>
+            <td><span ng-bind="order.total_section2()|number:2"></span></td>
           </tr>
           
           <tr>
             <td>
               จัดทำซีดี พร้อมสกรีนแผ่น
             </td>
-            <td><span ng-bind="schema.cdcopy.item * schema.cdcopy.price|number"></span></td>
+            <td><span ng-bind="schema.cdcopy.item * schema.cdcopy.price|number:2"></span></td>
           </tr>
           
           <tr>
             <td>
               จัดรูปแบบ
             </td>
-            <td><span ng-bind="schema.format.item * schema.format.price|number"></span></td>
+            <td><span ng-bind="schema.format.item * schema.format.price|number:2"></span></td>
           </tr>
           
           <tr>
@@ -344,7 +344,7 @@
             </td>
             <td>
               <strong>
-              <span ng-bind="schema.total_section_1h + schema.total_section_1s + extra_page(schema.more.item) + order.total_section2() + schema.total_section_3 + schema.total_section_4|number"></span>
+              <span ng-bind="schema.total_section_1h + schema.total_section_1s + extra_page(schema.more.item) + order.total_section2() + schema.total_section_3 + schema.total_section_4|number:2"></span>
               </strong>
             </td>
           </tr>          
