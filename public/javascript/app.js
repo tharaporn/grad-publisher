@@ -152,7 +152,7 @@ function OrderObject(order) {
   this.extra_page = function() {
     var num_page = parseInt(order.more.item);
     if(num_page - 200 > 0) {      
-      return Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+      return Math.ceil((num_page-200)/50)*10*(h_copy);
     } else {
       return 0;
     }
@@ -251,7 +251,7 @@ function OrderReceiptController($scope, $routeParams, $location, Order, Program,
         if(response.softcopy.item) {
           s_copy = parseInt(response.softcopy.item);
         }              
-        $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+        $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy);
       }
     }
   });    
@@ -421,7 +421,7 @@ function OrderController($scope, $routeParams, $location, $filter, Order, Studen
       if(response.softcopy.item) {
         s_copy = parseInt(response.softcopy.item);
       }              
-      $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+      $scope.extra_page = Math.ceil((num_page-200)/50)*10*(h_copy);
     }
     
   });   
@@ -630,7 +630,7 @@ function MainController($scope, Student, Schema, Order, Program, User, Logout,$h
       if($scope.schema.softcopy.item) {
         s_copy = parseInt($scope.schema.softcopy.item);
       }              
-      return Math.ceil((num_page-200)/50)*10*(h_copy+s_copy);
+      return Math.ceil((num_page-200)/50)*10*(h_copy);
     }
   }  
 }
